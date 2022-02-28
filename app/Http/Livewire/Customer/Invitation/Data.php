@@ -13,7 +13,8 @@ class Data extends Component
     public function render()
     {
         return view('livewire.customer.invitation.data', [
-            'data' => auth()->user()->invitations,
+            // 'data' => auth()->user()->invitations,
+            'data' => Wedding::all(),
         ]);
     }
 
@@ -50,6 +51,10 @@ class Data extends Component
             $wedding = Wedding::find(decrypt($id));
             if ($wedding->user_id == auth()->user()->id) {
                 $wedding->delete();
+                $this->dispatchBrowserEvent('alert', [
+                    'type' => 'success',
+                    'message' => "Invitation has been deleted",
+                ]);
             } else {
                 $this->dispatchBrowserEvent('alert', [
                     'type' => 'error',
@@ -93,6 +98,37 @@ class Data extends Component
                 $this->dispatchBrowserEvent('alert', [
                     'type' => 'error',
                     'message' => "Your must upgrade your account",
+                ]);
+            }
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function update($id)
+    {
+        try {
+            $wedding = Wedding::find(decrypt($id));
+            if ($wedding->user_id == auth()->user()->id) {
+                $wedding->update([
+                    // "date" => $this->date,
+                    // "time" => $this->time,
+                    // "address" => $this->address,
+                    // "longitude" => $this->longitude,
+                    // "latitude" => $this->latitude,
+                    // "title" => $this->title,
+                ]);
+                $this->dispatchBrowserEvent('alert', [
+                    'type' => 'success',
+                    'message' => "Invitation has been updated",
+                ]);
+            } else {
+                $this->dispatchBrowserEvent('alert', [
+                    'type' => 'error',
+                    'message' => "You can't update this invitation",
                 ]);
             }
         } catch (\Exception $e) {

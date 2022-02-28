@@ -14,7 +14,7 @@
                 </div>
                 <div class="flex-shrink-0">
                     <div class="">
-                        <a href="auth-recoverpw.php" class="text-muted">Forgot
+                        <a href="{{ route('password.request') }}" class="text-muted">Forgot
                             password?</a>
                     </div>
                 </div>

@@ -14,19 +14,19 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            Log::create([
-                "user_id" => 1,
-                "browsher" => "browsher",
-                "ip_address" => "ip_address",
-                "action" => "action",
-                "url" => "url",
-                "method" => "method",
-                "device" => "device",
-                "os" => "os",
-            ]);
+        // $this->middleware(function ($request, $next) {
+        //     Log::create([
+        //         "user_id" => 1,
+        //         "browsher" => "browsher",
+        //         "ip_address" => "ip_address",
+        //         "action" => "action",
+        //         "url" => "url",
+        //         "method" => "method",
+        //         "device" => "device",
+        //         "os" => "os",
+        //     ]);
 
-            return $next($request);
-        });
+        //     return $next($request);
+        // });
     }
 }

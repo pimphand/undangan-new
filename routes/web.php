@@ -6,7 +6,7 @@ use App\Http\Livewire\Admin\DataUser;
 use App\Http\Livewire\Admin\Theme\DataTheme;
 use App\Http\Livewire\Customer\Invitation\Data;
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Socialite\Facades\Socialite;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +22,16 @@ Route::view('/', 'auth.login');
 
 require __DIR__ . '/auth.php';
 
+// Login Google
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+
+    // $user->token
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');

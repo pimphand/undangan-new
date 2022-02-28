@@ -52,13 +52,16 @@
                                         @php
                                         $id = $item->id;
                                         @endphp
-                                        <button wire:click="form('edit','{{ encrypt($id) }}')" type="button"
-                                            class="btn btn-warning btn-sm">
-                                            <i class="fa fa-edit"></i></button>
-                                        <button type="button" wire:click="$emit('triggerDelete','{{ encrypt($id) }}')"
-                                            class="btn btn-danger btn-sm">
-                                            <div class="fa fa-trash"></div>
-                                        </button>
+                                        {{-- <button wire:click="form('edit','{{ encrypt($id) }}')" type="button"
+                                            class="btn btn-warning btn-sm"> --}}
+                                            <button wire:click="update('{{ encrypt($id) }}')" type="button"
+                                                class="btn btn-warning btn-sm">
+                                                <i class="fa fa-edit"></i></button>
+                                            <button type="button"
+                                                wire:click="$emit('triggerDelete','{{ encrypt($id) }}')"
+                                                class="btn btn-danger btn-sm">
+                                                <div class="fa fa-trash"></div>
+                                            </button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -139,7 +142,7 @@
         @this.on('triggerDelete', contactId => {
             Swal.fire({
                 title: 'Are You Sure?',
-                text: 'Theme record will be deleted!',
+                text: 'Invitation record will be deleted!',
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -151,7 +154,7 @@
              // calling destroy method to delete
                     @this.call('destroy',contactId)
              // success response
-                    Swal.fire({title: 'Theme deleted successfully!', icon: 'success'});
+                    Swal.fire({title: message, icon: type});
                 } else {
                     Swal.fire({
                         title: 'Operation Cancelled!',
