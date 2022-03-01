@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\DataUser;
 use App\Http\Livewire\Admin\Theme\DataTheme;
@@ -21,17 +22,12 @@ use Laravel\Socialite\Facades\Socialite;
 Route::view('/', 'auth.login');
 
 require __DIR__ . '/auth.php';
-
-// Login Google
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('github')->redirect();
-});
-
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
-
-    // $user->token
-});
+// google
+Route::get('/google/rederect',  [SocialiteController::class, 'google'])->name('google.redirect');
+Route::get('/google/callback',  [SocialiteController::class, 'googleCallback'])->name('google.callback');
+// github
+Route::get('/github/rederect',  [SocialiteController::class, 'github'])->name('github.redirect');
+Route::get('/github/callback',  [SocialiteController::class, 'githubCallback'])->name('github.callback');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');

@@ -74,6 +74,12 @@
                                                     <i class="mdi mdi-google"></i>
                                                 </a>
                                             </li>
+                                            <li class="list-inline-item">
+                                                <a href="{{ route('github.redirect') }}"
+                                                    class="social-list-item bg-dark text-white border-dark">
+                                                    <i class="mdi mdi-github"></i>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
 
