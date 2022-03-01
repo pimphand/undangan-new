@@ -12,9 +12,28 @@ class SocialiteController extends Controller
 {
     public function google(Request $request)
     {
+        return Socialite::driver('google')->redirect();
     }
     public function googleCallback(Request $request)
     {
+        $data = Socialite::driver('google')->user();
+        // dd($data);
+        $user = User::where('email', $data->email)->first();
+
+        if ($user) {
+            Auth::login($user);
+            return redirect()->route('dashboard');
+        } else {
+            $user = User::create([
+                'name' => $data->name,
+                'username' => $data->name,
+                'email' => $data->email,
+                'whatsapp' => null,
+                'password' => bcrypt(Str::random(16)),
+            ]);
+            auth()->login($user);
+            return redirect()->route('dashboard');
+        }
     }
 
 
