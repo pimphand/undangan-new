@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('username');
             $table->string('email')->unique();
-            $table->string('whatsapp')->unique();
+            $table->string('whatsapp')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('role')->default(1);
-            $table->string('status')->default(true);
+            $table->string('status')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
