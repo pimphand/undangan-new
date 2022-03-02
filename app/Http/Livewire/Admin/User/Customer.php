@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\User;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -9,7 +9,7 @@ use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Str;
 
-class DataUser extends Component
+class Customer extends Component
 {
     use WithFileUploads, WithPagination;
     public $name, $slug, $image, $type, $status, $title, $f;
@@ -17,9 +17,8 @@ class DataUser extends Component
     public $nav = 'admin';
     public function render()
     {
-        return view('livewire.admin.data-user', [
-            "data" => User::where('role', 0)->get(),
-            "customers" => User::where('role', 1)->get(),
+        return view('livewire.admin.user.customer', [
+            "data" => User::where('role', 1)->get(),
         ])->layout('layouts.app');
     }
 
@@ -151,6 +150,19 @@ class DataUser extends Component
 
     public function tab($id)
     {
-        $this->nav = $id;
+        $ar = ['admin', 'personal', 'organization'];
+        if (in_array($id, $ar) == $id) {
+            $this->nav = $id;
+        } else {
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'error',
+                'message' => "Whops something wrong",
+            ]);
+        }
+    }
+
+    public function des($id)
+    {
+        $this->emit('triggerDelete', $id);
     }
 }

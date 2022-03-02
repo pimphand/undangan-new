@@ -28,6 +28,7 @@ class SocialiteController extends Controller
                 'name' => $data->name,
                 'username' => $data->name,
                 'email' => $data->email,
+                'image' => $data->avatar,
                 'whatsapp' => null,
                 'password' => bcrypt(Str::random(16)),
             ]);
@@ -44,9 +45,7 @@ class SocialiteController extends Controller
     public function githubCallback(Request $request)
     {
         $data = Socialite::driver('github')->user();
-        // dd($data);
         $user = User::where('email', $data->email)->first();
-
         if ($user) {
             Auth::login($user);
             return redirect()->route('dashboard');
@@ -55,6 +54,7 @@ class SocialiteController extends Controller
                 'name' => $data->name,
                 'username' => $data->name,
                 'email' => $data->email,
+                'image' => $data->avatar,
                 'whatsapp' => null,
                 'password' => bcrypt(Str::random(16)),
             ]);

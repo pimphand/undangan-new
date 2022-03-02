@@ -55,6 +55,7 @@ class Data extends Component
                     'type' => 'success',
                     'message' => "Invitation has been deleted",
                 ]);
+                $this->emit('storeWedding');
             } else {
                 $this->dispatchBrowserEvent('alert', [
                     'type' => 'error',
@@ -83,13 +84,13 @@ class Data extends Component
                 // "title" => $this->title,
             ];
             if ($user->status == 1) {
-                Wedding::create($data);
+                $wedding = Wedding::create($data);
                 $this->dispatchBrowserEvent('alert', [
                     'type' => 'success',
                     'message' => "Invitation has been created",
                 ]);
             } elseif ($user->status == 0 && $user->invitations->count() < 1) {
-                Wedding::create($data);
+                $wedding = Wedding::create($data);
                 $this->dispatchBrowserEvent('alert', [
                     'type' => 'success',
                     'message' => "Invitation has been created",
@@ -100,6 +101,7 @@ class Data extends Component
                     'message' => "Your must upgrade your account",
                 ]);
             }
+            $this->emit('storeWedding');
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'error',

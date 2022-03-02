@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             'username' => 'organizer',
             'email' => "organizer@gmail.com",
             'password' => bcrypt('organizer'),
-            'role' => 2,
+            'role' => 1,
             'status' => 1
         ]);
 
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
             'username' => 'reseller',
             'email' => "reseller@gmail.com",
             'password' => bcrypt('reseller'),
-            'role' => 2,
+            'role' => 1,
             'status' => 1
         ]);
     }

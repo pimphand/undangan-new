@@ -15,20 +15,32 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($data as $item)
+                @foreach ($customers as $customer)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $item->name }}</td>
+                    <td>{{ $customer->name }} </td>
                     <td>
-                        <img src="https://ui-avatars.com/api/?name={{ substr($item->name,0,1) }}&color=7F9CF5&background=EBF4FF"
+                        @php
+                        $image = substr($customer->image,0,5)
+                        @endphp
+                        @if ($customer->image == null)
+                        <img src="https://ui-avatars.com/api/?name={{ substr($customer->name,0,1) }}&color=7F9CF5&background=EBF4FF"
                             alt="" class="rounded avatar-lg">
+                        @else
+                        @if ($image == 'https')
+                        <img src="{{ $customer->image }}" alt="" class="rounded avatar-lg">
+                        @else
+                        <img src="{{ asset('storage/'. $customer->image) }}" alt="" class="rounded avatar-lg">
+                        @endif
+                        @endif
+
                     </td>
-                    <td>{{ $item->type }}</td>
+                    <td>{{ $customer->type }}</td>
                     <td>
-                        <button wire:click="form('edit','{{ $item->id }}')" type="button"
+                        <button wire:click="form('edit','{{ $customer->id }}')" type="button"
                             class="btn btn-warning btn-sm">
                             <i class="fa fa-edit"></i></button>
-                        <button type="button" wire:click="$emit('triggerDelete',{{ $item->id }})"
+                        <button type="button" wire:click="$emit('triggerDelete',{{ $customer->id }})"
                             class="btn btn-danger btn-sm">
                             <div class="fa fa-trash"></div>
                         </button>

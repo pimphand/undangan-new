@@ -30,14 +30,7 @@
                         <a class="nav-link {{ $nav == 'personal'? " active" : "" }}" wire:click="tab('personal')"
                             role="tab">
                             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
-                            <span class="d-none d-sm-block">Personal</span>
-                        </a>
-                    </li>
-                    <li class="nav-item waves-effect waves-light">
-                        <a class="nav-link {{ $nav == 'organization'? " active" : "" }}"
-                            wire:click="tab('organization')" role="tab">
-                            <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
-                            <span class="d-none d-sm-block">Organization</span>
+                            <span class="d-none d-sm-block">Customer</span>
                         </a>
                     </li>
                 </ul>
@@ -45,20 +38,15 @@
                 <!-- Tab panes -->
                 <div class="tab-content p-3 text-muted">
                     @if ($nav == 'admin')
-                    <div class="tab-pane active" id="home-1" role="tabpanel">
-                        @include('livewire.admin.user.admin')
-                    </div>
+
+                    @include('livewire.admin.user.admin')
+
                     @endif
 
                     @if ($nav == 'personal')
-                    <div class="tab-pane" id="profile-1" role="tabpanel">
-                        Personal
-                    </div>
-                    @endif
-                    @if ($nav == 'organization')
-                    <div class="tab-pane" id="messages-1" role="tabpanel">
-                        Orabniization
-                    </div>
+
+                    @include('livewire.admin.user.customer')
+
                     @endif
 
                 </div>

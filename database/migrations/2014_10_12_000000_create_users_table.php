@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('whatsapp')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('image')->nullable();
             $table->integer('role')->default(1);
             $table->string('status')->default(false);
             $table->rememberToken();

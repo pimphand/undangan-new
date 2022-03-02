@@ -24,6 +24,7 @@ class User extends Authenticatable
         'whatsapp',
         'password',
         'role',
+        'image',
         'status',
     ];
 
