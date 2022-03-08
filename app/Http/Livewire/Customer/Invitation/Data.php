@@ -89,7 +89,7 @@ class Data extends Component
                     'type' => 'success',
                     'message' => "Invitation has been created",
                 ]);
-            } elseif ($user->status == 0 && $user->invitations->count() < 1) {
+            } elseif ($user->status == 0 && $user->personal->count() < 1) {
                 $wedding = Wedding::create($data);
                 $this->dispatchBrowserEvent('alert', [
                     'type' => 'success',

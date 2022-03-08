@@ -5,6 +5,7 @@ use App\Http\Controllers\SocialiteController;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\DataUser;
 use App\Http\Livewire\Admin\Theme\DataTheme;
+use App\Http\Livewire\Customer\Invitation\Create;
 use App\Http\Livewire\Customer\Invitation\Data;
 use App\Http\Livewire\Theme\ListThema;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::middleware(['auth', 'role:1|2'])->group(function () {
         Route::group(["prefix" => "customer", "as" => "customer."], function () {
+            Route::get('/create-invie', Create::class)->name('invitation.create');
             Route::get('/user', Data::class)->name('invitation.index');
             Route::get('/tema', ListThema::class)->name('tema.index');
         });

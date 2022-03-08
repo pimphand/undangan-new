@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Invitation\Invite;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -55,12 +56,12 @@ class User extends Authenticatable
      * @var array<string, string>
      */
 
-    public function invitations()
+    public function organizer()
     {
-        return $this->hasMany(Wedding::class);
+        return $this->hasMany(Invite::class);
     }
-    public function invitation()
+    public function personal()
     {
-        return $this->hasOne(Wedding::class);
+        return $this->hasOne(Invite::class);
     }
 }

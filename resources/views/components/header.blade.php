@@ -169,7 +169,9 @@
                     </div>
                 </div>
 
+                @if (auth()->user()->role == 1)
                 @livewire('components.notification')
+                @endif
 
                 <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item right-bar-toggle me-2">

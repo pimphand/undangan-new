@@ -6,15 +6,15 @@ use Livewire\Component;
 
 class Notification extends Component
 {
-    public $count, $data;
+    public $count = 0, $data;
 
     protected $listeners = [
         'storeWedding' => 'handleNotification',
     ];
     public function mount()
     {
-        $this->count = auth()->user()->invitations->count();
-        $this->data = auth()->user()->invitations;
+        $this->count = auth()->user()->personal->count();
+        $this->data = auth()->user()->organizer;
     }
     public function render()
     {
@@ -23,7 +23,7 @@ class Notification extends Component
 
     public function handleNotification()
     {
-        $this->count = auth()->user()->invitations->count();
-        $this->data = auth()->user()->invitations;
+        $this->count = auth()->user()->personal->count();
+        $this->data = auth()->user()->organizer;
     }
 }

@@ -1,17 +1,27 @@
 <div>
-    <div class="row">
+
+    <div class="col">
+
+        @forelse ($data as $item)
         <div class="col-xl-4">
             <div class="card text-center">
                 <div class="card-header">
-                    <h4 class="card-title">
-                        Premium
-                    </h4>
+                    <h3>
+                        <span class="badge bg-{{ $item->class }}">
+                            {{ $item->type }}
+                        </span>
+                    </h3>
                 </div>
                 <div class="card-body">
 
-                    <img class="rounded me-2" alt="200x200" width="400"
-                        src="{{ asset('admin/assets') }}/images/small/img-4.jpg" data-holder-rendered="true" />
+                    <img class="rounded me-2" alt="{{ $item->name }}" width="400" src="{{ asset($item->image) }}"
+                        data-holder-rendered="true" />
                 </div>
+                <h4>
+                    <span class="badge bg-{{ $item->class }}">
+                        {{ $item->name }}
+                    </span>
+                </h4>
                 <div class="card-header">
                     @if (auth()->user()->role == 0)
                     <button class="btn btn-info"><i class="fas fa-image"></i></button>
@@ -25,5 +35,15 @@
                 </div><!-- end card header -->
             </div><!-- end col -->
         </div>
+        @empty
+        <div class="col-xl-12">
+            <div class="card text-center">
+                <h4>Tidak ada data</h4>
+            </div><!-- end col -->
+        </div>
+        @endforelse
+
+
     </div>
+
 </div>

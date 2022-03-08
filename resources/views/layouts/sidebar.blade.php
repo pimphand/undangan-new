@@ -44,6 +44,12 @@
                 </li>
 
                 <li>
+                    <a href="{{ route('customer.invitation.create') }}">
+                        <i data-feather="grid"></i>
+                        <span data-key="t-apps">Create</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('customer.invitation.index') }}">
                         <i data-feather="grid"></i>
                         <span data-key="t-apps">invitation</span>
