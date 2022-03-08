@@ -31,25 +31,14 @@ class UserSeeder extends Seeder
             'email' => "user@gmail.com",
             'password' => bcrypt('user'),
             'role' => 1,
-            'status' => 1
+            'status' => 0
         ]);
-
         User::create([
-            'name' => "organizer",
+            'name' => "permium",
             'whatsapp' => "08977931229",
-            'username' => 'organizer',
-            'email' => "organizer@gmail.com",
-            'password' => bcrypt('organizer'),
-            'role' => 1,
-            'status' => 1
-        ]);
-
-        User::create([
-            'name' => "reseller",
-            'whatsapp' => "08977931239",
-            'username' => 'reseller',
-            'email' => "reseller@gmail.com",
-            'password' => bcrypt('reseller'),
+            'username' => 'permium',
+            'email' => "permium@gmail.com",
+            'password' => bcrypt('permium'),
             'role' => 1,
             'status' => 1
         ]);

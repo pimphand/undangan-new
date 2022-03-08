@@ -33,16 +33,21 @@
                 </li>
                 @endif
 
-                <li class="menu-title mt-2" data-key="t-components">Invitation</li>
-
                 @if (auth()->user()->role == 1)
-                <li>
+                <li class="menu-title mt-2" data-key="t-components">Undangan</li>
 
+                <li>
+                    <a href="{{ route('customer.tema.index') }}">
+                        <i data-feather="grid"></i>
+                        <span data-key="t-apps">Tema</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{ route('customer.invitation.index') }}">
                         <i data-feather="grid"></i>
                         <span data-key="t-apps">invitation</span>
                     </a>
-
                 </li>
                 @endif
 
