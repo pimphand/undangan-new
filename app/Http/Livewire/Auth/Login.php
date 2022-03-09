@@ -31,22 +31,29 @@ class Login extends Component
 
     public function login()
     {
-        $this->validate([
-            'username' => ['required'],
-            'password' => ['required'],
-        ]);
-
-        if (!Auth::attempt(['username' => $this->username, 'password' => $this->password], $this->remember)) {
-            $this->dispatchBrowserEvent('swal', [
-                'type' => 'error',
-                'title' => "Data tidak ditemukan",
-                'icon' => 'error',
+        try {
+            $this->validate([
+                'username' => ['required'],
+                'password' => ['required'],
             ]);
 
-            return;
-        }
+            if (!Auth::attempt(['username' => $this->username, 'password' => $this->password], $this->remember)) {
+                $this->dispatchBrowserEvent('swal', [
+                    'type' => 'error',
+                    'title' => "Data tidak ditemukan",
+                    'icon' => 'error',
+                ]);
+                return;
+            }
 
-        return redirect()->intended(route('dashboard'));
+            return redirect()->intended(route('dashboard'));
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('swal', [
+                'type' => 'error',
+                'title' => "Telah terjadi kesalahan",
+                'icon' => 'error',
+            ]);
+        }
     }
 
     public function render()
@@ -64,12 +71,22 @@ class Login extends Component
     {
         DB::beginTransaction();
         try {
-            // $this->validate([
-            //     'subdomain' => ['required'],
-            //     'reg_username' => ['required', 'unique:users,username'],
-            //     'reg_email' => ['required', 'email', 'unique:users,email'],
-            //     'reg_password' => ['required', 'min:8', 'same:reg_konfirmasi_password'],
-            // ]);
+            $this->validate([
+                'subdomain' => ['required'],
+                'reg_username' => ['required', 'unique:users,username'],
+                'reg_email' => ['required', 'email', 'unique:users,email'],
+                'reg_password' => ['required', 'min:8', 'same:reg_konfirmasi_password'],
+            ], [
+                'reg_password.same' => 'Password tidak sama',
+                'reg_username.unique' => 'Username sudah terdaftar',
+                'reg_email.unique' => 'Email sudah terdaftar',
+                'reg_email.email' => 'Email tidak valid',
+                'reg_password.min' => 'Password minimal 8 karakter',
+                'reg_password.required' => 'Password tidak boleh kosong',
+                'reg_username.required' => 'Username tidak boleh kosong',
+                'subdomain.required' => 'Subdomain tidak boleh kosong',
+                'reg_email.required' => 'Email tidak boleh kosong',
+            ]);
 
             $user = User::create([
                 'name' => $this->reg_username,
@@ -85,15 +102,23 @@ class Login extends Component
 
             $invite->bride()->create();
             $invite->event()->create();
-            Auth::login($user, true);
-            // return redirect()->intended(route('dashboard'));
+            Auth::login($user);
             DB::commit();
-        } catch (\Throwable $t) {
+            return redirect()->intended(route('dashboard'));
+        } catch (\Exception $t) {
             DB::rollback();
-            $this->dispatchBrowserEvent('alert', [
-                'type' => 'error',
-                'message' => $t->getMessage(),
-            ]);
+            foreach ($t->errors() as $error) {
+                $this->dispatchBrowserEvent('swal', [
+                    'type' => 'error',
+                    'title' => $error,
+                    'icon' => 'error',
+                ]);
+            }
+            // $this->dispatchBrowserEvent('swal', [
+            //     'type' => 'error',
+            //     'title' => ,
+            //     'icon' => 'error',
+            // ]);
         }
     }
 }

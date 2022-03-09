@@ -9,7 +9,7 @@
 
         <div class="mb-3 ">
             <label class="form-label">{{ __("Username") }}</label>
-            <input type="text" class="form-control" wire:model="username" placeholder="Enter username">
+            <input required type="text" class="form-control" wire:model="username" placeholder="Enter username">
         </div>
         <div class="mb-3 ">
             <div class="d-flex align-items-start">
@@ -25,8 +25,9 @@
             </div>
 
             <div class="input-group auth-pass-inputgroup">
-                <input type="password" class="form-control" wire:model.lazy="password" placeholder="Enter password"
-                    name="password" aria-label="Password" aria-describedby="password-addon">
+                <input required type="password" class="form-control" wire:model.lazy="password"
+                    placeholder="Enter password" name="password" aria-label="Password"
+                    aria-describedby="password-addon">
                 <button class="btn btn-light ms-0" type="button" id="password-addon"><i
                         class="mdi mdi-eye-outline"></i></button>
             </div>
@@ -54,21 +55,27 @@
             <label class="form-label" for="validationTooltipUsername">Subdomain / Url Undangan</label>
             <div class="input-group">
                 <span class="input-group-text" id="validationTooltipUsernamePrepend">undanganmo.com/</span>
-                <input type="text" class="form-control" id="validationTooltipUsername" wire:model='subdomain'
+                <input required type="text" class="form-control" id="validationTooltipUsername" wire:model='subdomain'
                     placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required>
             </div>
             <h6>undanganmo.com/{{ Str::slug($subdomain) }}</h6>
         </div>
         <div class="mb-3 ">
             <label class="form-label" for="username">{{ __("Email") }}</label>
-            <input type="text" class="form-control" wire:model.lazy="reg_email" placeholder="Enter email">
+            <input required type="text" class="form-control" wire:model.lazy="reg_email" placeholder="Enter email">
             <span class="text-danger"></span>
         </div>
 
         <div class="mb-3 ">
             <label class="form-label" for="username">{{ __("Username") }}</label>
-            <input type="text" class="form-control" wire:model.lazy="reg_username" placeholder="Enter username">
-            <span class="text-danger"></span>
+            <input required type="text" class="form-control" wire:model.lazy="reg_username"
+                placeholder="Enter username">
+            @error('reg_username')
+            <span class="text-danger">
+                {{ $exception->getMessage() }}
+            </span>
+            @enderror
+
         </div>
         <div class="mb-3 ">
             <div class="d-flex align-items-start">
@@ -78,8 +85,9 @@
             </div>
 
             <div class="input-group auth-pass-inputgroup">
-                <input type="password" class="form-control" wire:model.lazy="reg_password" placeholder="Enter password"
-                    name="password" aria-label="Password" aria-describedby="password-addon">
+                <input required type="password" class="form-control" wire:model.lazy="reg_password"
+                    placeholder="Enter password" name="password" aria-label="Password"
+                    aria-describedby="password-addon">
                 <span class="text-danger"></span>
                 <button class="btn btn-light ms-0" type="button" id="password-addon"><i
                         class="mdi mdi-eye-outline"></i></button>
@@ -93,7 +101,7 @@
             </div>
 
             <div class="input-group auth-pass-inputgroup">
-                <input type="password" class="form-control" wire:model.lazy="reg_konfirmasi_password"
+                <input required type="password" class="form-control" wire:model.lazy="reg_konfirmasi_password"
                     placeholder="Enter password" name="password" aria-label="Password"
                     aria-describedby="password-addon">
                 <span class="text-danger"></span>
