@@ -42,8 +42,6 @@
             </div><!-- end col -->
         </div>
         @endforelse
-
-
     </div>
 
 </div>

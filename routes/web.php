@@ -5,6 +5,8 @@ use App\Http\Controllers\SocialiteController;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\DataUser;
 use App\Http\Livewire\Admin\Theme\DataTheme;
+use App\Http\Livewire\Auth\Register;
+use App\Http\Livewire\Customer\Invitation\Bride;
 use App\Http\Livewire\Customer\Invitation\Create;
 use App\Http\Livewire\Customer\Invitation\Data;
 use App\Http\Livewire\Theme\ListThema;
@@ -22,6 +24,10 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 Route::view('/', 'auth.login');
+
+
+Route::get('/register-customer', Register::class)
+    ->name('register');
 
 require __DIR__ . '/auth.php';
 // google
@@ -43,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/create-invie', Create::class)->name('invitation.create');
             Route::get('/user', Data::class)->name('invitation.index');
             Route::get('/tema', ListThema::class)->name('tema.index');
+            Route::get('/mempelai', Bride::class)->name('bride.index');
         });
     });
 });

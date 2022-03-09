@@ -37,24 +37,30 @@
                 <li class="menu-title mt-2" data-key="t-components">Undangan</li>
 
                 <li>
-                    <a href="{{ route('customer.tema.index') }}">
-                        <i data-feather="grid"></i>
-                        <span data-key="t-apps">Tema</span>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i data-feather="briefcase"></i>
+                        <span data-key="t-components">Website</span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="false">
+
+                        <li>
+                            <a href="{{ route('customer.tema.index') }}">
+                                <i data-feather="grid"></i>
+                                <span data-key="t-apps">Tema</span>
+                            </a>
+                        </li>
+                        <hr>
+                        <li>
+                            <a href="{{ route('customer.bride.index') }}">
+                                <i data-feather="grid"></i>
+                                <span data-key="t-apps">Mempelai</span>
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
 
-                <li>
-                    <a href="{{ route('customer.invitation.create') }}">
-                        <i data-feather="grid"></i>
-                        <span data-key="t-apps">Create</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('customer.invitation.index') }}">
-                        <i data-feather="grid"></i>
-                        <span data-key="t-apps">invitation</span>
-                    </a>
-                </li>
+
                 @endif
 
             </ul>

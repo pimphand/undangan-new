@@ -44,52 +44,8 @@
                                     </a>
                                 </div>
                                 <div class="auth-content my-auto">
-                                    <div class="text-center">
-                                        <h5 class="mb-0">Welcome Back !</h5>
-                                        <p class="text-muted mt-2">Sign in to continue to Minia.</p>
-                                    </div>
+
                                     @livewire('auth.login')
-
-                                    <div class="mt-4 pt-2 text-center">
-                                        <div class="signin-other-title">
-                                            <h5 class="font-size-14 mb-3 text-muted fw-medium">- Sign in with -</h5>
-                                        </div>
-
-                                        <ul class="list-inline mb-0">
-                                            <li class="list-inline-item">
-                                                <a href="javascript:void()"
-                                                    class="social-list-item bg-primary text-white border-primary">
-                                                    <i class="mdi mdi-facebook"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="javascript:void()"
-                                                    class="social-list-item bg-info text-white border-info">
-                                                    <i class="mdi mdi-twitter"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="{{ route('google.redirect') }}"
-                                                    class="social-list-item bg-danger text-white border-danger">
-                                                    <i class="mdi mdi-google"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="{{ route('github.redirect') }}"
-                                                    class="social-list-item bg-dark text-white border-dark">
-                                                    <i class="mdi mdi-github"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="mt-5 text-center">
-                                        <p class="text-muted mb-0">Don't have an account ?
-                                            <a href="{{ route('register') }}" class="text-primary fw-semibold"> Signup
-                                                now
-                                            </a>
-                                        </p>
-                                    </div>
                                 </div>
 
                             </div>
