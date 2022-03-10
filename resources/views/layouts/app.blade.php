@@ -19,6 +19,17 @@
     <link href="{{ asset('admin/assets') }}/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{ asset('admin/assets') }}/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <style>
+        .card-1 {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        }
+
+        .card-1:hover {
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+    </style>
     @stack('css')
     @livewireStyles
 </head>
@@ -106,6 +117,12 @@
         })
     })
    
+    </script>
+
+    <script>
+        window.addEventListener('swal',function(e){
+                    Swal.fire(e.detail);
+                    });
     </script>
     @livewireScripts
     @stack('js')

@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'role' => 0,
             'status' => 1
         ]);
-        User::create([
+        $user = User::create([
             'name' => "user",
             'whatsapp' => "08977931219",
             'username' => 'user',

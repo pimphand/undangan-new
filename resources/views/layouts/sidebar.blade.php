@@ -56,6 +56,12 @@
                                 <span data-key="t-apps">Mempelai</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('customer.event.index') }}">
+                                <i data-feather="grid"></i>
+                                <span data-key="t-apps">Acara</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>
