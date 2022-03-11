@@ -30,7 +30,9 @@
                     @else
                     <button class="btn btn-success"><i class="fas fa-check-circle"></i> Pilih</button>
                     <button class="btn btn-warning"><i class="fas fa-check-circle"></i> Aktif</button>
-                    <button class="btn btn-info"><i class="fas fa-image"></i> Demo</button>
+                    <a href="{{ route('demo', $item->slug) }}" target="_blank" class="btn btn-info"><i
+                            class="fas fa-image"></i>
+                        Demo</a>
                     @endif
                 </div><!-- end card header -->
             </div><!-- end col -->

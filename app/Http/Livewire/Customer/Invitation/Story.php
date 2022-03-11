@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Story extends Component
 {
-    public $date, $title, $content, $ids;
+    public $date, $title, $content, $ids, $count;
 
     public function render()
     {
@@ -22,6 +22,11 @@ class Story extends Component
         'title' => 'required',
         'content' => 'required',
     ];
+
+    public function mount()
+    {
+        $this->count = Auth::user()->personal->story()->count();
+    }
     public function save()
     {
         try {
@@ -40,6 +45,7 @@ class Story extends Component
                     "content" => $this->content,
                     "date" => $this->date,
                 ]);
+                $this->count = Auth::user()->personal->story()->count();
                 $this->resets();
                 $this->dispatchBrowserEvent('alert', [
                     'type' => 'success',
@@ -61,6 +67,7 @@ class Story extends Component
         try {
             $auth = Auth::user()->personal->story()->findOrFail($id);
             $auth->delete();
+            $this->count = Auth::user()->personal->story()->count();
             $this->resets();
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'success',
@@ -90,5 +97,29 @@ class Story extends Component
         $this->title = "";
         $this->content = "";
         $this->ids = "";
+    }
+
+    public function update()
+    {
+        try {
+            $auth = Auth::user()->personal->story()->findOrFail($this->ids);
+            $auth->update([
+                "title" => $this->title,
+                "content" => $this->content,
+                "date" => $this->date,
+            ]);
+            $this->count = Auth::user()->personal->story()->count();
+            $this->resets();
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'success',
+                'message' => "Data berhasil dihapus",
+            ]);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('swal', [
+                'type' => 'error',
+                'title' => $e->getMessage(),
+                'icon' => 'error',
+            ]);
+        }
     }
 }

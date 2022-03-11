@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\DataUser;
@@ -22,13 +23,13 @@ use Laravel\Socialite\Facades\Socialite;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the 'web' middleware group. Now create something great!
 |
 */
 
 Route::view('/', 'auth.login');
 
-
+Route::get('/{slug}', [FrontendController::class, 'demo'])->name('demo');
 Route::get('/register-customer', Register::class)
     ->name('register');
 
@@ -48,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user', DataUser::class)->name('user');
     });
     Route::middleware(['auth', 'role:1|2'])->group(function () {
-        Route::group(["prefix" => "customer", "as" => "customer."], function () {
+        Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
             Route::get('/create-invie', Create::class)->name('invitation.create');
             Route::get('/user', Data::class)->name('invitation.index');
             Route::get('/tema', ListThema::class)->name('tema.index');

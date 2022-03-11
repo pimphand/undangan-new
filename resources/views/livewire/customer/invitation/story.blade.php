@@ -11,7 +11,13 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-5 ">
                             <div>
-                                <form wire:submit.prevent="save">
+                                @if ($count >= 3)
+                                <div class="col-lg-12 text-center">
+                                    <h4>Maksimal 3 Cerita</h4>
+                                </div>
+                                @else
+                                <form @if ($ids==null)wire:submit.prevent="save" @else wire:submit.prevent="update"
+                                    @endif>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
@@ -41,6 +47,7 @@
 
                                     </div>
                                 </form>
+                                @endif
                             </div>
                         </div>
 
