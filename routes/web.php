@@ -27,9 +27,9 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::view('/', 'auth.login');
+Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 
-Route::get('/{slug}', [FrontendController::class, 'demo'])->name('demo');
+Route::get('/demo/{slug}', [FrontendController::class, 'demo'])->name('demo');
 Route::get('/register-customer', Register::class)
     ->name('register');
 
