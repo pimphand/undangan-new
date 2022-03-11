@@ -27,4 +27,9 @@ class Invite extends Model
     {
         return $this->HasMany(Story::class);
     }
+
+    public function albums(): HasMany
+    {
+        return $this->HasMany(Gallery::class);
+    }
 }

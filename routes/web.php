@@ -10,6 +10,8 @@ use App\Http\Livewire\Customer\Invitation\Bride;
 use App\Http\Livewire\Customer\Invitation\Create;
 use App\Http\Livewire\Customer\Invitation\Data;
 use App\Http\Livewire\Customer\Invitation\Event;
+use App\Http\Livewire\Customer\Invitation\Gallery;
+use App\Http\Livewire\Customer\Invitation\Story;
 use App\Http\Livewire\Theme\ListThema;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -52,6 +54,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/tema', ListThema::class)->name('tema.index');
             Route::get('/mempelai', Bride::class)->name('bride.index');
             Route::get('/event', Event::class)->name('event.index');
+            Route::get('/gallery', Gallery::class)->name('gallery.index');
+            Route::get('/story', Story::class)->name('story.index');
         });
     });
 });

@@ -62,6 +62,18 @@
                                 <span data-key="t-apps">Acara</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('customer.gallery.index') }}">
+                                <i data-feather="grid"></i>
+                                <span data-key="t-apps">Gallery</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('customer.story.index') }}">
+                                <i data-feather="grid"></i>
+                                <span data-key="t-apps">Cerita</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>
