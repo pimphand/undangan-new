@@ -363,11 +363,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 section-header mb-5">
-                                <h2 class="font-weight-bold">Our Services</h2>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat ea quam
-                                    laborum,
-                                    ducimus, laboriosam sint dolorum aspernatur libero.</p>
-
+                                <h2 class="font-weight-bold">Tema Undangan</h2>
                             </div>
 
 

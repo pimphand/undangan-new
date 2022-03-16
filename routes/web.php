@@ -28,6 +28,7 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+Route::get('/data', [FrontendController::class, 'getData'])->name('data');
 
 Route::get('/demo/{slug}', [FrontendController::class, 'demo'])->name('demo');
 Route::get('/register-customer', Register::class)
@@ -40,6 +41,8 @@ Route::get('/google/callback',  [SocialiteController::class, 'googleCallback'])-
 // github
 Route::get('/github/rederect',  [SocialiteController::class, 'github'])->name('github.redirect');
 Route::get('/github/callback',  [SocialiteController::class, 'githubCallback'])->name('github.callback');
+
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
