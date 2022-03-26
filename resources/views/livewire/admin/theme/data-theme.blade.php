@@ -43,7 +43,11 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->image }}</td>
+                                    <td>
+                                        <img src="{{ asset('storage/'.$item->image) }}"
+                                            wire:click="show('{{ $item->image }}','{{ $item->name }}')" width="100"
+                                            alt="">
+                                    </td>
                                     <td>{{ $item->type }}</td>
                                     <td>
                                         <button wire:click="form('edit','{{ $item->id }}')" type="button"
@@ -119,7 +123,22 @@
             </div>
         </div>
     </div>
+
+    <div wire:ignore.self class="modal fade" id="showimage" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ $title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ asset('storage/'.$showImage) }}" width="700" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 
 @push('js')
@@ -129,6 +148,9 @@
             });
     window.livewire.on('save', () => {
                 $('#data').modal('hide');
+            });
+    window.livewire.on('showimage', () => {
+                $('#showimage').modal('show');
             });
 </script>
 <script type="text/javascript">

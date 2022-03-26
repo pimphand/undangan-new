@@ -13,7 +13,7 @@ use Str;
 class DataTheme extends Component
 {
     use WithFileUploads, WithPagination;
-    public $name, $slug, $image, $type, $status, $title, $f;
+    public $name, $slug, $showImage, $image, $type, $status, $title, $f;
 
     public function render()
     {
@@ -142,8 +142,17 @@ class DataTheme extends Component
             'id' => $id,
         ]);
     }
+
     public function destroy($id)
     {
         Theme::destroy($id);
+    }
+
+    public function show($image, $title)
+    {
+        // dd($item);
+        $this->emit('showimage');
+        $this->showImage = $image;
+        $this->title = $title;
     }
 }
