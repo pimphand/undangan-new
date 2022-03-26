@@ -123,7 +123,8 @@
 
         <ul class="list-inline mb-0">
             <li class="list-inline-item">
-                <a href="javascript:void()" class="social-list-item bg-primary text-white border-primary">
+                <a href="{{ route('facebook.redirect') }}"
+                    class="social-list-item bg-primary text-white border-primary">
                     <i class="mdi mdi-facebook"></i>
                 </a>
             </li>

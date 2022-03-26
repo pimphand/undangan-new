@@ -79,4 +79,37 @@ class SocialiteController extends Controller
             return redirect()->route('dashboard');
         }
     }
+
+    public function facebook(Request $request)
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function facebookCallback(Request $request)
+    {
+        $data = Socialite::driver('facebook')->user();
+        $user = User::where('email', $data->email)->first();
+        if ($user) {
+            Auth::login($user);
+            return redirect()->route('dashboard');
+        } else {
+            $user = User::create([
+                'name' => $data->name,
+                'username' => $data->name,
+                'email' => $data->email,
+                'image' => $data->avatar,
+                'whatsapp' => null,
+                'password' => bcrypt(Str::random(16)),
+            ]);
+            $invite = Invite::create([
+                "user_id" => $user->id,
+                "subdomain" => Str::slug($data->name),
+            ]);
+
+            $invite->bride()->create();
+            $invite->event()->create();
+            auth()->login($user);
+            return redirect()->route('dashboard');
+        }
+    }
 }

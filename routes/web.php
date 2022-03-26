@@ -41,6 +41,9 @@ Route::get('/google/callback',  [SocialiteController::class, 'googleCallback'])-
 // github
 Route::get('/github/rederect',  [SocialiteController::class, 'github'])->name('github.redirect');
 Route::get('/github/callback',  [SocialiteController::class, 'githubCallback'])->name('github.callback');
+// facebook
+Route::get('/facebook/rederect',  [SocialiteController::class, 'facebook'])->name('facebook.redirect');
+Route::get('/facebook/callback',  [SocialiteController::class, 'facebookCallback'])->name('facebook.callback');
 
 
 

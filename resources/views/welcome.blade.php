@@ -13,10 +13,6 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/styles/vendor/aos.css">
     <link rel="stylesheet" href="{{ asset('assets') }}/styles/vendor/perfect-scrollbar.css">
     <link rel="stylesheet" href="{{ asset('assets') }}/styles/css/themes/lite-purple.min.css">
-
-
-
-
 </head>
 
 <body class="text-left ">
@@ -366,8 +362,8 @@
                                 <h2 class="font-weight-bold">Tema Undangan</h2>
                             </div>
 
-
-                            @foreach ($themes as $theme)
+                            <div class="" id="calender"></div>
+                            {{-- @foreach ($themes as $theme)
                             <div data-aos='fade-up' class="service-wrap col-md-6 col-lg-3 col-sm-12">
                                 <div class="card o-hidden mb-4">
 
@@ -396,7 +392,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                            @endforeach --}}
 
 
 
@@ -1900,17 +1896,9 @@
                 <!-- end of customizer -->
 
             </div>
-            <!-- ============ Main content End ============= -->
-
-
-
 
         </div>
     </div>
-
-    <!--=============== End app-Landing-wrap ================-->
-
-
 
     <script src="{{ asset('assets') }}/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="{{ asset('assets') }}/js/vendor/bootstrap.bundle.min.js"></script>
@@ -1920,6 +1908,8 @@
     <script src="{{ asset('assets') }}/js/es5/slick.script.min.js"></script>
     <script src="{{ asset('assets') }}/js/vendor/aos.js"></script>
     <script src="{{ asset('assets') }}/js/es5/script.min.js"></script>
+
+
 </body>
 
 </html>
