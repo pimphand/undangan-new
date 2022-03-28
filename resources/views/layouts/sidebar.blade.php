@@ -31,6 +31,14 @@
                     </a>
 
                 </li>
+
+                <li>
+                    <a href="{{ route('feature') }}">
+                        <i data-feather="framer"></i>
+                        <span data-key="t-authentication">Feature</span>
+                    </a>
+
+                </li>
                 @endif
 
                 @if (auth()->user()->role == 1)

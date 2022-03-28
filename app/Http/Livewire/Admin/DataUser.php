@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
-use Str;
+use Illuminate\Support\Str;
 
 class DataUser extends Component
 {
@@ -20,7 +20,7 @@ class DataUser extends Component
         return view('livewire.admin.data-user', [
             "data" => User::where('role', 0)->get(),
             "customers" => User::where('role', 1)->get(),
-        ])->layout('layouts.app');
+        ]);
     }
 
     protected $rules = [

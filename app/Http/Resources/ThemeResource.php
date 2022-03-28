@@ -19,6 +19,8 @@ class ThemeResource extends JsonResource
             'slug' => $this->slug,
             'description' => $this->description,
             'image' => $this->image,
+            'type' => $this->type,
+            'url' => $this->url,
         ];
     }
 }

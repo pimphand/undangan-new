@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Theme;
+namespace App\Http\Livewire\Admin\Feature;
 
 use App\Http\Controllers\LogController;
-use App\Models\Theme;
+use App\Models\Feature;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
 
-class DataTheme extends Component
+class DataFeature extends Component
 {
     use WithFileUploads, WithPagination;
     public $name, $slug, $showImage, $image, $type, $status, $title, $f;
 
     public function render()
     {
-        return view('livewire.admin.theme.data-theme', [
-            "data" => Theme::all(),
+        return view('livewire.admin.feature.data-feature', [
+            "data" => Feature::all(),
         ]);
     }
 
@@ -35,7 +35,7 @@ class DataTheme extends Component
             $this->resets();
         } elseif ($add == "edit" && $id != null) {
             $this->title = "Thema Edit";
-            $data = Theme::find($id);
+            $data = Feature::find($id);
             $this->name = $data->name;
             $this->type = $data->type;
             $this->f = $data->id;
@@ -93,10 +93,10 @@ class DataTheme extends Component
     public function create()
     {
         $this->validate($this->rules);
-        Theme::create([
+        Feature::create([
             'name' => $this->name,
             'slug' => Str::slug($this->name),
-            'image' => $this->image->store('themes', 'public'),
+            'image' => $this->image->store('Features', 'public'),
             'type' => $this->type,
             'status' => true,
         ]);
@@ -111,14 +111,14 @@ class DataTheme extends Component
     public function update($id)
     {
         $this->validate($this->rules);
-        $theme = Theme::findOrFail($id);
+        $Feature = Feature::findOrFail($id);
         if ($this->image == null) {
-            $image = $theme->image;
+            $image = $Feature->image;
         } else {
-            Storage::delete('public/' . $theme->image);
-            $image = $this->image->store('themes', 'public');
+            Storage::delete('public/' . $Feature->image);
+            $image = $this->image->store('Features', 'public');
         }
-        $theme->update([
+        $Feature->update([
             'name' => $this->name,
             'slug' => Str::slug($this->name),
             'image' => $image,
@@ -145,7 +145,7 @@ class DataTheme extends Component
 
     public function destroy($id)
     {
-        Theme::destroy($id);
+        Feature::destroy($id);
     }
 
     public function show($image, $title)

@@ -5,6 +5,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\DataUser;
+use App\Http\Livewire\Admin\Feature\DataFeature;
 use App\Http\Livewire\Admin\Theme\DataTheme;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Customer\Invitation\Bride;
@@ -45,16 +46,16 @@ Route::get('/github/callback',  [SocialiteController::class, 'githubCallback'])-
 Route::get('/facebook/rederect',  [SocialiteController::class, 'facebook'])->name('facebook.redirect');
 Route::get('/facebook/callback',  [SocialiteController::class, 'facebookCallback'])->name('facebook.callback');
 
-
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
-    Route::middleware(['auth', 'role:0'])->group(function () {
+    Route::middleware(['role:0'])->group(function () {
         Route::get('/theme', DataTheme::class)->name('theme');
         Route::get('/user', DataUser::class)->name('user');
+        Route::get('/feature', DataFeature::class)->name('feature');
     });
-    Route::middleware(['auth', 'role:1|2'])->group(function () {
+
+    Route::middleware(['role:1|2'])->group(function () {
         Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
             Route::get('/create-invie', Create::class)->name('invitation.create');
             Route::get('/user', Data::class)->name('invitation.index');
