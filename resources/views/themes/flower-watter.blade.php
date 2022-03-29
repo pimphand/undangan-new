@@ -598,12 +598,12 @@
     <script src=https://unpkg.com/aos@2.3.1/dist/aos.js></script>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css">
     <script src=https://cdn.plyr.io/3.6.8/plyr.js></script>
-    <script src=https://weddingcnk.com/assets/themes/watercolor1/js/musicv2.js?v=1.0.0></script>
+    <script src={{ asset('themes/watercolor1/js') }}/musicv2.js></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js></script>
-    <script src=https://weddingcnk.com/assets/themes/watercolor1/themes/watercolor1/moment-with-locales.js></script>
-    <script src="https://weddingcnk.com/assets/themes/watercolor1/themes/watercolor1/jquery.classyqr.js"></script>
+    <script src={{ asset('themes/watercolor1/js') }}/moment-with-locales.js></script>
+    <script src={{ asset('themes/watercolor1/js') }}/classyqr.js></script>
     <script>
-        var base_url = 'https://weddingcnk.com';
+        var base_url = 'URL_BASE';
     </script>
     <script>
         var tanggal_akad = '2022/12/15';
@@ -616,43 +616,43 @@
     </script>
     <script>
         $(document).ready(function() {
-$("#over-lay-welcome").click(function() {
-			$("#over-lay-welcome").fadeOut(650);
-			$("#player").get(0).play(); //play musik;
-		});
-var kode = "Tidak Ada Qrcode";
-$("#qrcode").ClassyQR({
-   create:true,
-   type:'text',
-   text: kode
-  });
-  $("#submitKomen").on('click', function(event) {
-        var nama =  $("#nama").val();
-        var komentar =  $("#komentar").val();
-
-        $.ajax({
-            url : base_url+'/add_komentar',
-            method : "POST",
-            data : {nama: nama,komentar: komentar},
-            async : true,
-            dataType : 'html',
-            success: function(hasil){
-                var json = JSON.parse(hasil);
-                var status = json.status;
-                var nama = json.nama;
-                var komentar = json.komentar;
-                if(status == 'sukses'){
-                    $(".layout-komen").append("<div class='col-md-12 mb-3 komen'><div class='media px-3 media-comment'><img class='rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block' src='https://na.ui-avatars.com/api/?name="+nama+"&size=50' alt='Image Avatar'><div class='media-body'><div class='mb-2'><h5 class='h6 mb-0'>"+nama+"</h5></div><p>"+komentar+"</p></div></div></div>");
-                    
-                    $(".komen:hidden").slice(0, 100).slideDown();
-                    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
-                }
-               
-            }
+        $("#over-lay-welcome").click(function() {
+                    $("#over-lay-welcome").fadeOut(650);
+                    $("#player").get(0).play(); //play musik;
+                });
+        var kode = "Tidak Ada Qrcode";
+        $("#qrcode").ClassyQR({
+        create:true,
+        type:'text',
+        text: kode
         });
+        $("#submitKomen").on('click', function(event) {
+                var nama =  $("#nama").val();
+                var komentar =  $("#komentar").val();
 
-    });
-});
+                $.ajax({
+                    url : base_url+'/add_komentar',
+                    method : "POST",
+                    data : {nama: nama,komentar: komentar},
+                    async : true,
+                    dataType : 'html',
+                    success: function(hasil){
+                        var json = JSON.parse(hasil);
+                        var status = json.status;
+                        var nama = json.nama;
+                        var komentar = json.komentar;
+                        if(status == 'sukses'){
+                            $(".layout-komen").append("<div class='col-md-12 mb-3 komen'><div class='media px-3 media-comment'><img class='rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block' src='https://na.ui-avatars.com/api/?name="+nama+"&size=50' alt='Image Avatar'><div class='media-body'><div class='mb-2'><h5 class='h6 mb-0'>"+nama+"</h5></div><p>"+komentar+"</p></div></div></div>");
+                            
+                            $(".komen:hidden").slice(0, 100).slideDown();
+                            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+                        }
+                    
+                    }
+                });
+
+            });
+        });
     </script>
     <script>
         addEventListener("click", function() {
