@@ -165,72 +165,20 @@
                 <div class="col-md-12">
                     <div class="features-items features-carousel owl-carousel owl-theme">
                         <!-- Single Item -->
+                        @foreach ($features as $feature)
                         <div class="item">
                             <div class="icon">
-                                <span>01</span>
+                                <span>{{ $loop->iteration }}</span>
                                 <i class="flaticon-drag-2"></i>
                             </div>
                             <div class="info">
-                                <h4>Drag And Drop</h4>
+                                <h4>{{ $feature->name }}</h4>
                                 <p>
-                                    Situation perpetual allowance offending as principle.
+                                    {{ $feature->description }}
                                 </p>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-angle-right"></i></a>
-                                </div>
                             </div>
                         </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="icon">
-                                <span>02</span>
-                                <i class="flaticon-software"></i>
-                            </div>
-                            <div class="info">
-                                <h4>App Integration</h4>
-                                <p>
-                                    Situation perpetual allowance offending as principle.
-                                </p>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="icon">
-                                <span>03</span>
-                                <i class="flaticon-rgb"></i>
-                            </div>
-                            <div class="info">
-                                <h4>Color Schemes</h4>
-                                <p>
-                                    Situation perpetual allowance offending as principle.
-                                </p>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="icon">
-                                <span>04</span>
-                                <i class="flaticon-resolution"></i>
-                            </div>
-                            <div class="info">
-                                <h4>High Resolution</h4>
-                                <p>
-                                    Situation perpetual allowance offending as principle.
-                                </p>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                         <!-- End Single Item -->
                     </div>
                 </div>
@@ -462,6 +410,7 @@
                                 </ul>
                             </div>
                         </div>
+
                         <div class="col-lg-4 col-md-4 single-item">
                             <div class="pricing-item active">
                                 <ul>
@@ -1015,7 +964,7 @@
             thema();
             function thema(){
                 $.ajax({
-                    url: "{{ route('data') }}",
+                    url: "{{ route('tema-data') }}",
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
@@ -1048,8 +997,24 @@
                 var url = $(this).attr('href');
                 window.open(url, '_blank');
             });
+        });
 
-            });
+        var owl = $('.owl-carousel');
+
+        owl.owlCarousel({
+            nav:false,
+            margin:10,
+            loop:true,
+            responsive:{
+                0:{
+                items:2
+                },
+                1000:{
+                items:3
+                }
+            }
+        });
+
     </script>
 </body>
 

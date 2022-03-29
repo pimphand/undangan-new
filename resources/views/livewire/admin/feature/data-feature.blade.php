@@ -34,7 +34,7 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Image</th>
-                                    <th>Type</th>
+                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -44,11 +44,11 @@
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $item->name }}</td>
                                     <td>
-                                        <img src="{{ asset('storage/'.$item->image) }}"
+                                        <img src="{{ $item->icon }}"
                                             wire:click="show('{{ $item->image }}','{{ $item->name }}')" width="100"
                                             alt="">
                                     </td>
-                                    <td>{{ $item->type }}</td>
+                                    <td>{{ $item->description }}</td>
                                     <td>
                                         <button wire:click="form('edit','{{ $item->id }}')" type="button"
                                             class="btn btn-warning btn-sm">
@@ -79,42 +79,34 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            @if ($f == null)
-                            <form wire:submit.prevent="save('create')">
-                                @else
-                                <form wire:submit.prevent="save('update','{{ $f }}')">
-                                    @endif
-                                    <div class="mb-3">
-                                        <label class="form-label" for="formrow-firstname-input">Name</label>
-                                        <input type="text" wire:model.lazy='name' class="form-control"
-                                            id="formrow-firstname-input">
-                                    </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="formrow-email-input">Image</label>
-                                                <input type="file" wire:model.lazy='image' class="form-control"
-                                                    id="formrow-email-input">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="formrow-password-input">Type</label>
-                                                <select name="" required wire:model.lazy='type' class="form-control"
-                                                    id="">
-                                                    <option value="">-=Select Type=-</option>
-                                                    <option value="Premium">Premium</option>
-                                                    <option value="Basic">Basic</option>
-                                                    <option value="Free">Free</option>
-                                                </select>
-                                            </div>
+                            <form wire:submit.prevent="save">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formrow-firstname-input">Name</label>
+                                            <input type="text" wire:model.lazy='name' class="form-control"
+                                                id="formrow-firstname-input">
                                         </div>
                                     </div>
-                                    <div class="mt-4">
-                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formrow-email-input">Icon</label>
+                                            <input type="file" wire:model.lazy='image' class="form-control"
+                                                id="formrow-email-input">
+                                        </div>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="formrow-password-input">Description</label>
+                                    <textarea class="form-control" wire:model.lazy='description'></textarea>
+                                </div>
+
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
@@ -132,7 +124,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="{{ asset('storage/'.$showImage) }}" width="700" alt="">
+                    <img src="{{ $item->icon }}" width="700" alt="">
                 </div>
             </div>
         </div>

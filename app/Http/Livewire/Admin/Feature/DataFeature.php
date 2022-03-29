@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 class DataFeature extends Component
 {
     use WithFileUploads, WithPagination;
-    public $name, $slug, $showImage, $image, $type, $status, $title, $f;
+    public $name, $icon, $showImage, $image, $description, $title, $f;
 
     public function render()
     {
@@ -24,7 +24,6 @@ class DataFeature extends Component
 
     protected $rules = [
         'name' => 'required|string|max:255',
-        'type' => 'required|in:Premium,Free,Basic',
     ];
 
     public function form($add, $id = null)
@@ -37,7 +36,7 @@ class DataFeature extends Component
             $this->title = "Thema Edit";
             $data = Feature::find($id);
             $this->name = $data->name;
-            $this->type = $data->type;
+            $this->description = $data->description;
             $this->f = $data->id;
 
             $this->emit('form');
@@ -50,9 +49,9 @@ class DataFeature extends Component
         }
     }
 
-    public function save($s, $id = null)
+    public function save()
     {
-        if ($s == "create") {
+        if ($this->f == null) {
             try {
                 $this->create();
             } catch (\Exception $e) {
@@ -61,9 +60,9 @@ class DataFeature extends Component
                     'message' => $e->getMessage(),
                 ]);
             }
-        } elseif ($s == "update" && $id != null) {
+        } elseif ($this->f != null) {
             try {
-                $this->update($id);
+                $this->update($this->f);
             } catch (\Exception $e) {
                 $this->dispatchBrowserEvent('alert', [
                     'type' => 'error',
@@ -83,10 +82,8 @@ class DataFeature extends Component
     public function resets()
     {
         $this->name = null;
-        $this->slug = null;
-        $this->image = null;
-        $this->type = null;
-        $this->status = null;
+        $this->icon = null;
+        $this->description = null;
         $this->f = null;
     }
 
@@ -95,10 +92,8 @@ class DataFeature extends Component
         $this->validate($this->rules);
         Feature::create([
             'name' => $this->name,
-            'slug' => Str::slug($this->name),
-            'image' => $this->image->store('Features', 'public'),
-            'type' => $this->type,
-            'status' => true,
+            'icon' => $this->image->store('features', 'public'),
+            'description' => $this->description,
         ]);
         $this->emit('save');
         $this->dispatchBrowserEvent('alert', [
@@ -113,17 +108,15 @@ class DataFeature extends Component
         $this->validate($this->rules);
         $Feature = Feature::findOrFail($id);
         if ($this->image == null) {
-            $image = $Feature->image;
+            $image = $Feature->icon;
         } else {
-            Storage::delete('public/' . $Feature->image);
-            $image = $this->image->store('Features', 'public');
+            Storage::delete('public/' . $Feature->icon);
+            $image = $this->image->store('features', 'public');
         }
         $Feature->update([
             'name' => $this->name,
-            'slug' => Str::slug($this->name),
-            'image' => $image,
-            'type' => $this->type,
-            'status' => true,
+            'icon' => $image,
+            'description' => $this->description,
         ]);
         $this->emit('save');
         $this->dispatchBrowserEvent('alert', [

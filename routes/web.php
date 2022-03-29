@@ -29,8 +29,8 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
-Route::get('/data', [FrontendController::class, 'getData'])->name('data');
-
+Route::get('/tema', [FrontendController::class, 'tema'])->name('tema-data');
+Route::get('/data-feature', [FrontendController::class, 'feature'])->name('feature-data');
 Route::get('/demo/{slug}', [FrontendController::class, 'demo'])->name('demo');
 Route::get('/register-customer', Register::class)
     ->name('register');
