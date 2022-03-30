@@ -38,8 +38,9 @@
                                     <th scope="row">
                                         <button type="checkbox" data-toggle="toggle"
                                             class="btn btn-{{ $item->bride == true ? 'success' : 'danger' }}"
-                                            wire:click='save("bride", {{ $item->bride }})'>{{ $item->bride == true ?
-                                            'aktif' : 'tidak aktif' }}</button>
+                                            wire:click='save("bride", {{ $item->bride }})'>
+                                            {{ $item->bride == true ?'aktif' : 'tidak aktif' }}
+                                        </button>
                                     </th>
                                 </tr>
 
@@ -49,9 +50,9 @@
                                     <th scope="row">
                                         <button type="checkbox" data-toggle="toggle"
                                             class="btn btn-{{ $item->gallery == true ? 'success' : 'danger' }}"
-                                            wire:click='save("gallery", {{ $item->gallery }})'>{{ $item->gallery ==
-                                            true
-                                            ? 'aktif' : 'tidak aktif' }}</button>
+                                            wire:click='save("gallery", {{ $item->gallery }})'>
+                                            {{ $item->gallery ==true ? 'aktif' : 'tidak aktif' }}
+                                        </button>
                                     </th>
                                 </tr>
 
@@ -61,8 +62,9 @@
                                     <th scope="row">
                                         <button type="checkbox" data-toggle="toggle"
                                             class="btn btn-{{ $item->event == true ? 'success' : 'danger' }}"
-                                            wire:click='save("event", {{ $item->event }})'>{{ $item->event == true ?
-                                            'aktif' : 'tidak aktif' }}</button>
+                                            wire:click='save("event", {{ $item->event }})'>
+                                            {{ $item->event == true ?'aktif' : 'tidak aktif' }}
+                                        </button>
                                     </th>
                                 </tr>
 
@@ -72,9 +74,9 @@
                                     <th scope="row">
                                         <button type="checkbox" data-toggle="toggle"
                                             class="btn btn-{{ $item->map == true ? 'success' : 'danger' }}"
-                                            wire:click='save("map", {{ $item->map }})'>{{ $item->map == true ?
-                                            'aktif' :
-                                            'tidak aktif' }}</button>
+                                            wire:click='save("map", {{ $item->map }})'>
+                                            {{ $item->map == true ?'aktif' : 'tidak aktif' }}
+                                        </button>
                                     </th>
                                 </tr>
 
@@ -84,8 +86,9 @@
                                     <th scope="row">
                                         <button type="checkbox" data-toggle="toggle"
                                             class="btn btn-{{ $item->love_story == true ? 'success' : 'danger' }}"
-                                            wire:click='save("love_story", {{ $item->love_story }})'>{{
-                                            $item->love_story == true ? 'aktif' : 'tidak aktif' }}</button>
+                                            wire:click='save("love_story", {{ $item->love_story }})'>
+                                            {{$item->love_story == true ? 'aktif' : 'tidak aktif' }}
+                                        </button>
                                     </th>
                                 </tr>
 
@@ -95,8 +98,9 @@
                                     <th scope="row">
                                         <button type="checkbox" data-toggle="toggle"
                                             class="btn btn-{{ $item->video == true ? 'success' : 'danger' }}"
-                                            wire:click='save("video", {{ $item->video }})'>{{ $item->video == true ?
-                                            'aktif' : 'tidak aktif' }}</button>
+                                            wire:click='save("video", {{ $item->video }})'>
+                                            {{ $item->video == true ?'aktif' : 'tidak aktif' }}
+                                        </button>
                                     </th>
                                 </tr>
 
@@ -106,8 +110,9 @@
                                     <th scope="row">
                                         <button type="checkbox" data-toggle="toggle"
                                             class="btn btn-{{ $item->guest_book == true ? 'success' : 'danger' }}"
-                                            wire:click='save("guest_book", {{ $item->guest_book }})'>{{
-                                            $item->guest_book == true ? 'aktif' : 'tidak aktif' }}</button>
+                                            wire:click='save("guest_book", {{ $item->guest_book }})'>
+                                            {{$item->guest_book == true ? 'aktif' : 'tidak aktif' }}
+                                        </button>
                                     </th>
                                 </tr>
 
