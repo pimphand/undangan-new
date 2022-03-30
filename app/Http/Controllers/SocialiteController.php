@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Invitation\Invite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -32,6 +33,13 @@ class SocialiteController extends Controller
                 'whatsapp' => null,
                 'password' => bcrypt(Str::random(16)),
             ]);
+             $invite = Invite::create([
+                "user_id" => $user->id,
+                "subdomain" => Str::slug($data->name),
+            ]);
+
+            $invite->bride()->create();
+            $invite->event()->create();
             auth()->login($user);
             return redirect()->route('dashboard');
         }
@@ -58,6 +66,13 @@ class SocialiteController extends Controller
                 'whatsapp' => null,
                 'password' => bcrypt(Str::random(16)),
             ]);
+             $invite = Invite::create([
+                "user_id" => $user->id,
+                "subdomain" => Str::slug($data->name),
+            ]);
+
+            $invite->bride()->create();
+            $invite->event()->create();
             auth()->login($user);
             return redirect()->route('dashboard');
         }

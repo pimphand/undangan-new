@@ -29,7 +29,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 
-Route::get('/demo/{slug}', [FrontendController::class, 'demo'])->name('demo');
+Route::get('/review/{slug}', [FrontendController::class, 'demo'])->name('demo');
 Route::get('/register-customer', Register::class)
     ->name('register');
 
