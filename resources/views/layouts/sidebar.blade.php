@@ -82,10 +82,23 @@
                                 <span data-key="t-apps">Cerita</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('customer.setting.index') }}">
+                                <i data-feather="grid"></i>
+                                <span data-key="t-apps">Settings</span>
+                            </a>
+                        </li>
+
 
                     </ul>
-                </li>
 
+                </li>
+                <li>
+                    <a href="{{ route('customer.send-invitation.index') }}">
+                        <i data-feather="send"></i>
+                        <span data-key="t-apps">Kirim Undangan</span>
+                    </a>
+                </li>
 
                 @endif
 

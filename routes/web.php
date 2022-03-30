@@ -13,6 +13,8 @@ use App\Http\Livewire\Customer\Invitation\Create;
 use App\Http\Livewire\Customer\Invitation\Data;
 use App\Http\Livewire\Customer\Invitation\Event;
 use App\Http\Livewire\Customer\Invitation\Gallery;
+use App\Http\Livewire\Customer\Invitation\SendInvitation;
+use App\Http\Livewire\Customer\Invitation\Setting;
 use App\Http\Livewire\Customer\Invitation\Story;
 use App\Http\Livewire\Theme\ListThema;
 use Illuminate\Support\Facades\Route;
@@ -64,6 +66,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/event', Event::class)->name('event.index');
             Route::get('/gallery', Gallery::class)->name('gallery.index');
             Route::get('/story', Story::class)->name('story.index');
+            Route::get('/setting', Setting::class)->name('setting.index');
+            Route::get('/send-invitation', SendInvitation::class)->name('send-invitation.index');
         });
     });
 });

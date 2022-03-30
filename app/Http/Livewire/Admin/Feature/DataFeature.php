@@ -18,22 +18,28 @@ class DataFeature extends Component
     public function render()
     {
         return view('livewire.admin.feature.data-feature', [
-            "data" => Feature::all(),
+            "data" => Feature::latest()->get(),
         ]);
     }
 
     protected $rules = [
         'name' => 'required|string|max:255',
+        'image' => 'required|image|mimes:jpeg,png',
+        'description' => 'required',
+    ];
+
+    protected $messages = [
+        "iamge.iamge" => "hanya boleh gambar"
     ];
 
     public function form($add, $id = null)
     {
         if ($add == "tambah") {
-            $this->title = "Thema Create";
+            $this->title = "Feature Create";
             $this->emit('form');
             $this->resets();
         } elseif ($add == "edit" && $id != null) {
-            $this->title = "Thema Edit";
+            $this->title = "Feature Edit";
             $data = Feature::find($id);
             $this->name = $data->name;
             $this->description = $data->description;
@@ -72,7 +78,7 @@ class DataFeature extends Component
         } else {
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'error',
-                'message' => "Thema has been failed",
+                'message' => "Feature has been failed",
             ]);
             $this->resets();
         }
@@ -98,7 +104,7 @@ class DataFeature extends Component
         $this->emit('save');
         $this->dispatchBrowserEvent('alert', [
             'type' => 'success',
-            'message' => "Thema has been created",
+            'message' => "Feature has been created",
         ]);
         $this->resets();
     }
@@ -121,7 +127,7 @@ class DataFeature extends Component
         $this->emit('save');
         $this->dispatchBrowserEvent('alert', [
             'type' => 'success',
-            'message' => "Thema has been updated",
+            'message' => "Feature has been updated",
         ]);
         $this->resets();
     }

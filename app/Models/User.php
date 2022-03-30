@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Invitation\Invite;
+use App\Models\Invitation\Setting;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,8 +61,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Invite::class);
     }
+
     public function personal()
     {
         return $this->hasOne(Invite::class);
+    }
+
+    public function setting()
+    {
+        return $this->hasOne(Setting::class);
     }
 }
