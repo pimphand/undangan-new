@@ -74,6 +74,7 @@
             <!-- end card -->
         </div>
     </div>
+
     <div wire:ignore.self class="modal fade" id="data" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
