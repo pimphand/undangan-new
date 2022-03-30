@@ -1,43 +1,48 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Theme;
+namespace App\Http\Livewire\Admin\Feature;
 
 use App\Http\Controllers\LogController;
-use App\Models\Theme;
+use App\Models\Feature;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
 
-class DataTheme extends Component
+class DataFeature extends Component
 {
     use WithFileUploads, WithPagination;
-    public $name, $slug, $showImage, $image, $type, $status, $title, $f;
+    public $name, $icon, $showImage, $image, $description, $title, $f;
 
     public function render()
     {
-        return view('livewire.admin.theme.data-theme', [
-            "data" => Theme::all(),
+        return view('livewire.admin.feature.data-feature', [
+            "data" => Feature::latest()->get(),
         ]);
     }
 
     protected $rules = [
         'name' => 'required|string|max:255',
-        'type' => 'required|in:Premium,Free,Basic',
+        'image' => 'required|image|mimes:jpeg,png',
+        'description' => 'required',
+    ];
+
+    protected $messages = [
+        "iamge.iamge" => "hanya boleh gambar"
     ];
 
     public function form($add, $id = null)
     {
         if ($add == "tambah") {
-            $this->title = "Thema Create";
+            $this->title = "Feature Create";
             $this->emit('form');
             $this->resets();
         } elseif ($add == "edit" && $id != null) {
-            $this->title = "Thema Edit";
-            $data = Theme::find($id);
+            $this->title = "Feature Edit";
+            $data = Feature::find($id);
             $this->name = $data->name;
-            $this->type = $data->type;
+            $this->description = $data->description;
             $this->f = $data->id;
 
             $this->emit('form');
@@ -50,9 +55,9 @@ class DataTheme extends Component
         }
     }
 
-    public function save($s, $id = null)
+    public function save()
     {
-        if ($s == "create") {
+        if ($this->f == null) {
             try {
                 $this->create();
             } catch (\Exception $e) {
@@ -61,9 +66,9 @@ class DataTheme extends Component
                     'message' => $e->getMessage(),
                 ]);
             }
-        } elseif ($s == "update" && $id != null) {
+        } elseif ($this->f != null) {
             try {
-                $this->update($id);
+                $this->update($this->f);
             } catch (\Exception $e) {
                 $this->dispatchBrowserEvent('alert', [
                     'type' => 'error',
@@ -73,7 +78,7 @@ class DataTheme extends Component
         } else {
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'error',
-                'message' => "Thema has been failed",
+                'message' => "Feature has been failed",
             ]);
             $this->resets();
         }
@@ -83,27 +88,23 @@ class DataTheme extends Component
     public function resets()
     {
         $this->name = null;
-        $this->slug = null;
-        $this->image = null;
-        $this->type = null;
-        $this->status = null;
+        $this->icon = null;
+        $this->description = null;
         $this->f = null;
     }
 
     public function create()
     {
         $this->validate($this->rules);
-        Theme::create([
+        Feature::create([
             'name' => $this->name,
-            'slug' => Str::slug($this->name),
-            'image' => $this->image->store('themes', 'public'),
-            'type' => $this->type,
-            'status' => true,
+            'icon' => $this->image->store('features', 'public'),
+            'description' => $this->description,
         ]);
         $this->emit('save');
         $this->dispatchBrowserEvent('alert', [
             'type' => 'success',
-            'message' => "Thema has been created",
+            'message' => "Feature has been created",
         ]);
         $this->resets();
     }
@@ -111,24 +112,22 @@ class DataTheme extends Component
     public function update($id)
     {
         $this->validate($this->rules);
-        $theme = Theme::findOrFail($id);
+        $Feature = Feature::findOrFail($id);
         if ($this->image == null) {
-            $image = $theme->image;
+            $image = $Feature->icon;
         } else {
-            Storage::delete('public/' . $theme->image);
-            $image = $this->image->store('themes', 'public');
+            Storage::delete('public/' . $Feature->icon);
+            $image = $this->image->store('features', 'public');
         }
-        $theme->update([
+        $Feature->update([
             'name' => $this->name,
-            'slug' => Str::slug($this->name),
-            'image' => $image,
-            'type' => $this->type,
-            'status' => true,
+            'icon' => $image,
+            'description' => $this->description,
         ]);
         $this->emit('save');
         $this->dispatchBrowserEvent('alert', [
             'type' => 'success',
-            'message' => "Thema has been updated",
+            'message' => "Feature has been updated",
         ]);
         $this->resets();
     }
@@ -145,7 +144,7 @@ class DataTheme extends Component
 
     public function destroy($id)
     {
-        Theme::destroy($id);
+        Feature::destroy($id);
     }
 
     public function show($image, $title)

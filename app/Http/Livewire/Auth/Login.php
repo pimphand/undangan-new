@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Auth;
 
 use App\Models\Invitation\Invite;
+use App\Models\Invitation\Setting;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -102,6 +103,9 @@ class Login extends Component
 
             $invite->bride()->create();
             $invite->event()->create();
+            Setting::create([
+                'user_id' => $user->id,
+            ]);
             Auth::login($user);
             DB::commit();
             return redirect()->intended(route('dashboard'));
