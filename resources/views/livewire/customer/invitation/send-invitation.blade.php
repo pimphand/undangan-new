@@ -22,8 +22,12 @@
                     <button wire:click="form" type="button" class="btn btn-info btn-sm" data-bs-toggle="modal">
                         <i class="fa fa-plus"></i>
                     </button>
-                    <button wire:click="store" type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal">
-                        <i class="fa fa-plus"></i>
+                    <button wire:click="$emit('import')" type="button" class="btn btn-success btn-sm"
+                        data-bs-toggle="modal">
+                        <i class="fa fa-file-excel"></i> Import Excel
+                    </button>
+                    <button wire:click="export" type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal">
+                        <i class="fa fa-file-excel"></i>
                     </button>
                 </div>
                 <div class="card-body">
@@ -33,9 +37,8 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th>Image</th>
-                                    <th>Type</th>
+                                    <th>Nama</th>
+                                    <th>Nomor WA</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -85,29 +88,58 @@
                         <div class="col-lg-12">
 
                             <form wire:submit.prevent="save('create')">
-                                <div class="mb-3">
-                                    <label class="form-label" for="formrow-firstname-input">Name</label>
-                                    <input type="text" wire:model.lazy='name' class="form-control"
-                                        id="formrow-firstname-input">
-                                </div>
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label" for="formrow-email-input">Image</label>
-                                            <input type="file" wire:model.lazy='image' class="form-control"
-                                                id="formrow-email-input">
+                                            <label class="form-label" for="formrow-firstname-input">Name</label>
+                                            <input type="text" wire:model.lazy='name' class="form-control"
+                                                id="formrow-firstname-input">
+                                            @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label" for="formrow-password-input">Type</label>
-                                            <select name="" required wire:model.lazy='type' class="form-control" id="">
-                                                <option value="">-=Select Type=-</option>
-                                                <option value="Premium">Premium</option>
-                                                <option value="Basic">Basic</option>
-                                                <option value="Free">Free</option>
-                                            </select>
+                                            <label class="form-label" for="formrow-email-input">Nomor WA</label>
+                                            <input type="text" wire:model.lazy='phone' class="form-control"
+                                                id="formrow-email-input">
+                                            @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div wire:ignore.self class="modal fade" id="import" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Import Kontak</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <form action="{{ route('customer.contact.export') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formrow-firstname-input">File</label>
+                                            <input type="file" name="file" class="form-control"
+                                                id="formrow-firstname-input">
+                                            @error(' excel') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -132,6 +164,9 @@
             });
     window.livewire.on('save', () => {
                 $('#data').modal('hide');
+            });
+    window.livewire.on('import', () => {
+                $('#import').modal('show');
             });
 </script>
 <script type="text/javascript">

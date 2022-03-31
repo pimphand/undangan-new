@@ -45,7 +45,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>
                                         <img src="{{ $item->icon }}"
-                                            wire:click="show('{{ $item->image }}','{{ $item->name }}')" width="100"
+                                            wire:click="show('{{ $item->icon }}','{{ $item->name }}')" width="100"
                                             alt="">
                                     </td>
                                     <td>{{ $item->description }}</td>
@@ -124,7 +124,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="{{ $item->icon }}" width="700" alt="">
+                    <img src="{{ $showImage }}" width="700" alt="">
                 </div>
             </div>
         </div>

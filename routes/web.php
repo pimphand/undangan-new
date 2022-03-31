@@ -18,7 +18,6 @@ use App\Http\Livewire\Customer\Invitation\Setting;
 use App\Http\Livewire\Customer\Invitation\Story;
 use App\Http\Livewire\Theme\ListThema;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/story', Story::class)->name('story.index');
             Route::get('/setting', Setting::class)->name('setting.index');
             Route::get('/send-invitation', SendInvitation::class)->name('send-invitation.index');
+            Route::get('/export-kontak', [PageController::class, 'import'])->name('contact.export');
         });
     });
 });

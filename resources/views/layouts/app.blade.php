@@ -39,7 +39,7 @@
 <body>
 
     <!-- Begin page -->
-    <div id="layout-wrapper" class="sidebar-enable">
+    <div id="layout-wrapper">
 
         <!-- if you select vertical Menu then comment Horizontal Menu and uncomment this-->
         <x-header></x-header>

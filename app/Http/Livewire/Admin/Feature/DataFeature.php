@@ -149,7 +149,6 @@ class DataFeature extends Component
 
     public function show($image, $title)
     {
-        // dd($item);
         $this->emit('showimage');
         $this->showImage = $image;
         $this->title = $title;
