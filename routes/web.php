@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
-Route::get('/un/{slug}', [FrontendController::class, 'undangan'])->name('undangan.index');
+Route::get('/wedding/{slug}', [FrontendController::class, 'undangan'])->name('undangan.index');
 Route::get('/tema', [FrontendController::class, 'tema'])->name('tema-data');
 Route::get('/data-feature', [FrontendController::class, 'feature'])->name('feature-data');
 Route::get('/demo/{slug}', [FrontendController::class, 'demo'])->name('demo');
