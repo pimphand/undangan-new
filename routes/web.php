@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Livewire\Admin\Dashboard;
@@ -13,6 +14,7 @@ use App\Http\Livewire\Customer\Invitation\Create;
 use App\Http\Livewire\Customer\Invitation\Data;
 use App\Http\Livewire\Customer\Invitation\Event;
 use App\Http\Livewire\Customer\Invitation\Gallery;
+use App\Http\Livewire\Customer\Invitation\Log;
 use App\Http\Livewire\Customer\Invitation\SendInvitation;
 use App\Http\Livewire\Customer\Invitation\Setting;
 use App\Http\Livewire\Customer\Invitation\Story;
@@ -30,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+Route::get('/un/{slug}', [FrontendController::class, 'undangan'])->name('undangan.index');
 Route::get('/tema', [FrontendController::class, 'tema'])->name('tema-data');
 Route::get('/data-feature', [FrontendController::class, 'feature'])->name('feature-data');
 Route::get('/demo/{slug}', [FrontendController::class, 'demo'])->name('demo');
@@ -66,8 +69,10 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/gallery', Gallery::class)->name('gallery.index');
             Route::get('/story', Story::class)->name('story.index');
             Route::get('/setting', Setting::class)->name('setting.index');
+            Route::get('/statistik-undangan', Log::class)->name('statistik.index');
             Route::get('/send-invitation', SendInvitation::class)->name('send-invitation.index');
-            Route::get('/export-kontak', [PageController::class, 'import'])->name('contact.export');
+            Route::get('/export-kontak', [CustomerController::class, 'import'])->name('contact.export');
+            Route::get('/history', [CustomerController::class, 'history'])->name('history.index');
         });
     });
 });

@@ -51,7 +51,7 @@
                 <div class="container-fluid">
 
                     <!-- start page title -->
-                    {{ $slot }}
+                    {{ $slot ?? ""}}
                     <!-- end page title -->
 
                 </div> <!-- container-fluid -->
@@ -123,8 +123,9 @@
                     Swal.fire(e.detail);
                     });
     </script>
-    @livewireScripts
     @stack('js')
+    @livewireScripts
+
 </body>
 
 </html>

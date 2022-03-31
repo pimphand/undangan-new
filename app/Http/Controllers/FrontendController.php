@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\FeatureResource;
 use App\Http\Resources\ThemeResource;
 use App\Models\Feature;
+use App\Models\Invitation\Invite;
 use App\Models\Theme;
 use Illuminate\Http\Request;
 
@@ -30,5 +31,11 @@ class FrontendController extends Controller
     public function feature()
     {
         return FeatureResource::collection(Feature::all());
+    }
+
+    public function undangan($slug)
+    {
+        $data = Invite::where('subdomain', $slug)->first();
+        return view('themes.' . $data->theme);
     }
 }
