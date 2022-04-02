@@ -7,7 +7,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#f5f6fa" />
-    <meta property="og:title" content="Andra & dAmel">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta property="og:title" content="{{ $data->bride->username_man }} & {{ $data->bride->username_woman }}">
     <meta property="og:description" content="Hello Tamu Undangan! Kamu Di Undang..">
     <meta property="og:url" content="https://weddingcnk.com">
     <meta property="og:image:width" content="300">
@@ -46,8 +47,10 @@
                 <h5>TOGETHER <br> WITH THEIR FAMILIES</h5>
             </div>
             <div class="col-md-12 header-frame" data-aos="fade-down" data-aos-duration="1000">
-                <h1>Andra <span>&</span> Amel</h1>
-                <p class="mt-3"><span id="tanggal-weddingnya">2022/12/15</span></p>
+                <h1>{{ $data->bride->username_man }}
+                    <span>&</span> {{ $data->bride->username_woman }}
+                </h1>
+                <p class="mt-3"><span id="tanggal-weddingnya">{{ $data->event->akad_date }}</span></p>
             </div>
             <div class="col-md-12 to" data-aos="fade-down" data-aos-duration="3000">
                 <i>Kepada Yth<br>Bapak/Ibu/Saudara/i</i>
@@ -73,22 +76,24 @@
                 <div data-aos="fade-up" data-aos-delay="100" class="col-md-6 mb-5  order-1 ">
                     <div class="row">
                         <div class="col-md-12 px-4 couple-ring girl">
-                            <img src="https://weddingcnk.com/assets/users/mIjh78y8ge13b89d99c1a29132e57d2ca/bride.png"
-                                alt="Juliet Photo" class="img-fluid">
+                            <img src="{{ asset('storage/'. $data->bride->photo_man) }}" alt="Juliet Photo"
+                                class="img-fluid">
                         </div>
                     </div>
-                    <h3 class="caption display-4">Siti Amelia</h3>
-                    <p class="font-weight-bold">Putri dari Pasangan <br> Bpk Soekatmo dan Ibu Siti Fatimah</p>
+                    <h3 class="caption display-4">{{ $data->bride->fullname_man }}</h3>
+                    <p class="font-weight-bold">Putra dari Pasangan <br> Bpk {{ $data->bride->father_man }} dan {{
+                        $data->bride->mother_man }}</p>
                 </div>
                 <div data-aos="fade-up" data-aos-delay="200" class="col-md-6 mb-5 ">
                     <div class="row">
                         <div class="col-md-12 px-4 couple-ring man">
-                            <img src="https://weddingcnk.com/assets/users/mIjh78y8ge13b89d99c1a29132e57d2ca/groom.png"
-                                alt="Romeo Photo" class="img-fluid">
+                            <img src="{{ asset('storage/'. $data->bride->photo_woman) }}" alt="Romeo Photo"
+                                class="img-fluid">
                         </div>
                     </div>
-                    <h3 class="caption display-4">Andra Leksmana</h3>
-                    <p class="font-weight-bold">Putra dari Pasangan <br> Bpk. Kusmanto dan Ibu Misriyah</p>
+                    <h3 class="caption display-4">{{ $data->bride->fullname_woman }}</h3>
+                    <p class="font-weight-bold">Putri dari Pasangan <br> Bpk {{ $data->bride->father_woman }} dan {{
+                        $data->bride->mother_woman }}</p>
                 </div>
             </div>
         </div>
@@ -337,182 +342,8 @@
         <div class="show-guest-book px-2 mt-5">
             <div class="container text-left">
                 <div class="row justify-content-md-center layout-komen">
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Aninda-Safira&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Aninda Safira</h5>
-                                </div>
 
-                                <p>Alhamdulilah, selamat atas pernikahan kalian. Semoga pernikahan kalian dilimpahi oleh
-                                    cinta, kebaikan dan kebahagiaan. Jazakallahu khairan khatira.. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Raisa-Andriana&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Raisa Andriana</h5>
-                                </div>
-
-                                <p>Selamat menikah sahabatku, ‘Barakallahu lakum wa baraka alaikum’ </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Anisa-Rahma&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Anisa Rahma</h5>
-                                </div>
-
-                                <p>Alhamdulillah.. Selamat ya. Semoga Allah Swt selalu melimpahkan rahmatNya untuk
-                                    pernikahan kalian.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Maudy-Ayunda&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Maudy Ayunda</h5>
-                                </div>
-
-                                <p>MasyaAllah.. Selamat buat kalian berdua. Barakallah</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Citra-Kirana&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Citra Kirana</h5>
-                                </div>
-
-                                <p>Baarakallahu laka wa baaraka ‘alaika wa jama’a bainakumaa fii khaiir.
-
-                                    Semoga Allah memberikan keberkahan untukmu dan atasmu, serta semoga Dia mengumpulkan
-                                    di antara kalian berdua dalam kebaikan. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Nissya-Sabyan&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Nissya Sabyan</h5>
-                                </div>
-
-                                <p>Semoga pernikahan kalian langgeng dan selalu dinaungi petunjuk Allah dalam setiap
-                                    langkah.. Aamiin</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Indra&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Indra</h5>
-                                </div>
-
-                                <p>Alhamdulilah, selamat atas pernikahan kalian. Semoga pernikahan kalian dilimpahi oleh
-                                    cinta, keb</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Iisjambi&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Iisjambi</h5>
-                                </div>
-
-                                <p>Selamat menikah sahabatku, ‘Barakallahu lakum wa baraka alaikum’</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Bagus-Jumawan&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Bagus Jumawan</h5>
-                                </div>
-
-                                <p>Selamat menikah sahabatku, ‘Barakallahu lakum wa baraka alaikum’</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Tamu-Undangan&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Tamu Undangan</h5>
-                                </div>
-
-                                <p>enak berkembangbiak</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Tamu-Undangan&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Tamu Undangan</h5>
-                                </div>
-
-                                <p>Ggg</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Tamu-Undangan&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Tamu Undangan</h5>
-                                </div>
-
-                                <p>Alhamdulilah</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3 komen">
-                        <div class="media px-3 media-comment">
-                            <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"
-                                src=https://na.ui-avatars.com/api/?name=Tamu-Undangan&size=50 alt="Image Avatar">
-                            <div class="media-body">
-                                <div class="mb-2">
-                                    <h5 class="h6 mb-0">Tamu Undangan</h5>
-                                </div>
-
-                                <p>Ahiw tungslem nih nanti malam hahaha</p>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="comment"></div>
 
                 </div>
             </div>
@@ -592,7 +423,8 @@
             </div>
         </div>
     </div>
-    <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/1.17.3/simple-lightbox.min.js></script>
     <script src=https://unpkg.com/aos@2.3.1/dist/aos.js></script>
@@ -602,17 +434,18 @@
     <script src=https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js></script>
     <script src={{ asset('themes/watercolor1/js') }}/moment-with-locales.js></script>
     <script src={{ asset('themes/watercolor1/js') }}/classyqr.js></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         var base_url = 'URL_BASE';
     </script>
     <script>
-        var tanggal_akad = '2022/12/15';
+        var tanggal_akad = '{{ $data->event->akad_date }}';
     </script>
     <script>
-        var tanggal_resepsi = '2022/12/15';
+        var tanggal_resepsi = `{{ $data->event->resepsi_date }}`;
     </script>
     <script>
-        var tanggal_pernikahan = '2022/12/15';
+        var tanggal_pernikahan = `{{ $data->event->akad_date }}`;
     </script>
     <script>
         $(document).ready(function() {
@@ -626,32 +459,6 @@
         type:'text',
         text: kode
         });
-        $("#submitKomen").on('click', function(event) {
-                var nama =  $("#nama").val();
-                var komentar =  $("#komentar").val();
-
-                $.ajax({
-                    url : base_url+'/add_komentar',
-                    method : "POST",
-                    data : {nama: nama,komentar: komentar},
-                    async : true,
-                    dataType : 'html',
-                    success: function(hasil){
-                        var json = JSON.parse(hasil);
-                        var status = json.status;
-                        var nama = json.nama;
-                        var komentar = json.komentar;
-                        if(status == 'sukses'){
-                            $(".layout-komen").append("<div class='col-md-12 mb-3 komen'><div class='media px-3 media-comment'><img class='rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block' src='https://na.ui-avatars.com/api/?name="+nama+"&size=50' alt='Image Avatar'><div class='media-body'><div class='mb-2'><h5 class='h6 mb-0'>"+nama+"</h5></div><p>"+komentar+"</p></div></div></div>");
-                            
-                            $(".komen:hidden").slice(0, 100).slideDown();
-                            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
-                        }
-                    
-                    }
-                });
-
-            });
         });
     </script>
     <script>
@@ -674,7 +481,7 @@
     $("#tanggal-acara-resepsi").html(date_resepsi);
     $("#tanggal-acara-akad").html(date_akad);
     $("#tanggal-weddingnya").html(date_pernikahan); //untuk sampul
-    var countDownDate=new Date('2022/12/15 09:00').getTime(),x=setInterval(function(){var e=(new Date).getTime(),n=countDownDate-e,t=Math.floor(n/864e5),a=Math.floor(n%864e5/36e5),o=Math.floor(n%36e5/6e4),m=Math.floor(n%6e4/1e3);document.getElementsByClassName("days")[0].innerHTML=t,document.getElementsByClassName("hours")[0].innerHTML=a,document.getElementsByClassName("minutes")[0].innerHTML=o,document.getElementsByClassName("seconds")[0].innerHTML=m,n<0&&(clearInterval(x),document.getElementsByClassName("expired").innerHTML="EXPIRED")},1e3);
+    var countDownDate=new Date('{{ $data->event->akad_date }} {{ $data->event->akad_time }}').getTime(),x=setInterval(function(){var e=(new Date).getTime(),n=countDownDate-e,t=Math.floor(n/864e5),a=Math.floor(n%864e5/36e5),o=Math.floor(n%36e5/6e4),m=Math.floor(n%6e4/1e3);document.getElementsByClassName("days")[0].innerHTML=t,document.getElementsByClassName("hours")[0].innerHTML=a,document.getElementsByClassName("minutes")[0].innerHTML=o,document.getElementsByClassName("seconds")[0].innerHTML=m,n<0&&(clearInterval(x),document.getElementsByClassName("expired").innerHTML="EXPIRED")},1e3);
     AOS.init();
         $('.gallery a').simpleLightbox({
         docClose: false,
@@ -730,6 +537,83 @@
                 alert('Unable to copy number');
             }
         }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(document).on("click",'#submitKomen',function (e) {
+                e.preventDefault();
+                var data = {
+                    'nama': $('#nama').val(),
+                    'komentar': $('#komentar').val(),
+                }
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('wedding',$data->subdomain) }}",
+                    data: data,
+                    dataType: "json",
+                    success: function (response) {
+                        // console.log(response);
+                        if (response.status == 400) {
+                           $.each(response.errors, function (key, err_value) {
+                                $('#saveform_error').append('<div class="alert alert-danger">' + err_value + '</div>');
+                           });
+                           Swal.fire({
+                                title: 'error',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'Ok'
+                          })
+                        } else {
+                            console.log(response.status);
+                            Swal.fire({
+                                title: 'success',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'Ok'
+                            })
+
+                            $('#guestbook').find('input').val('');
+                            fetchdata();
+                        }
+                    }
+                });
+            });
+
+            fetchdata();
+            function fetchdata(){
+                $.ajax({
+                    url: "{{ url('data-comment', $data->subdomain) }}",
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        $('.comment').html("");
+                       $.each(data.data, function (key, item) { 
+                           $('.comment').append('<div class="col-md-12 mb-3 komen">\
+                            <div class="media px-3 media-comment">\
+                                <img class="rounded-circle mr-3 d-none d-sm-block d-md-block d-lg-block"\
+                                    src=https://na.ui-avatars.com/api/?name='+item.slug+'&size=50 alt="Image Avatar">\
+                                <div class="media-body">\
+                                    <div class="mb-2">\
+                                        <h5 class="h6 mb-0">'+item.nama+'</h5>\
+                                    </div>\
+                                    <p>'+item.komentar'</p>\
+                                </div>\
+                            </div>\
+                        </div>');
+
+                       });
+
+                    }
+                });
+            }
+        });
     </script>
 </body>
 

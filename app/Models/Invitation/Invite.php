@@ -32,4 +32,9 @@ class Invite extends Model
     {
         return $this->HasMany(Gallery::class);
     }
+
+    public function comments(): HasMany
+    {
+        return $this->HasMany(Comment::class);
+    }
 }

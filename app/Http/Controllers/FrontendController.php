@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CommentResource;
 use App\Http\Resources\FeatureResource;
 use App\Http\Resources\ThemeResource;
 use App\Models\Feature;
@@ -36,6 +37,28 @@ class FrontendController extends Controller
     public function undangan($slug)
     {
         $data = Invite::where('subdomain', $slug)->first();
-        return view('themes.' . $data->theme);
+        // dd($data->event);
+        return view('themes.' . $data->theme, [
+            "data" => $data,
+        ]);
+    }
+
+    public function sendComment(Request $request, $data)
+    {
+        $data = Invite::where('subdomain', $data)->first();
+        $data->comments()->create([
+            'nama' => "request->nama",
+            'komentar' => $request->komentar,
+        ]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Komentar berhasil dikirim',
+        ]);
+    }
+
+    public function dataComment($data)
+    {
+        $data = Invite::where('subdomain', $data)->first();
+        return CommentResource::collection($data->comments()->get());
     }
 }
