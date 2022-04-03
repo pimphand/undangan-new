@@ -192,9 +192,11 @@
                         <!-- item-->
                         <a class="dropdown-item" href="apps-contacts-profile.php"><i
                                 class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Profile</a>
+                        @if (auth()->user()->role == 1)
                         <a class="dropdown-item"
                             href="{{ route('undangan.index',auth()->user()->personal->subdomain) }}"><i
                                 class="mdi mdi-lock font-size-16 align-middle me-1"></i> Undangan Saya </a>
+                        @endif
                         <div class="dropdown-divider"></div>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

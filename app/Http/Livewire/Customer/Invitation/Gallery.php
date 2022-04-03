@@ -9,7 +9,6 @@ use Livewire\WithFileUploads;
 
 class Gallery extends Component
 {
-
     use WithFileUploads;
     public $youtube, $image, $jumlah, $tampilGambar, $ids;
 
