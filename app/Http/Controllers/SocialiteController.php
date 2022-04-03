@@ -41,6 +41,7 @@ class SocialiteController extends Controller
             $invite = Invite::create([
                 "user_id" => $user->id,
                 "subdomain" => Str::slug($data->name),
+                'theme' => 'flower-watter',
             ]);
 
             $invite->bride()->create();
