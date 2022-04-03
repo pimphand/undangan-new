@@ -123,8 +123,8 @@
                     Swal.fire(e.detail);
                     });
     </script>
-    @stack('js')
     @livewireScripts
+    @stack('js')
 
 </body>
 

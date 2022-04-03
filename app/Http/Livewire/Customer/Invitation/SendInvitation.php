@@ -18,8 +18,13 @@ class SendInvitation extends Component
 
     public function render()
     {
+        $data = InvitationSendInvitation::where('invite_id', auth()->user()->personal->id)->get();
+        $data->map(function ($item) {
+            $item->url = route('undangan.index', auth()->user()->personal->subdomain);
+            return $item;
+        });
         return view('livewire.customer.invitation.send-invitation', [
-            "data" => InvitationSendInvitation::where('invite_id', auth()->user()->personal->id)->get(),
+            "data" => $data,
         ]);
     }
 

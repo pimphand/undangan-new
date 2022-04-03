@@ -93,12 +93,12 @@
                     </ul>
 
                 </li>
-                {{-- <li>
+                <li>
                     <a href="{{ route('customer.send-invitation.index') }}">
                         <i data-feather="send"></i>
                         <span data-key="t-apps">Kirim Undangan</span>
                     </a>
-                </li> --}}
+                </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="activity"></i>

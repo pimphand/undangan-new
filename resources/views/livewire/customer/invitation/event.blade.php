@@ -25,7 +25,7 @@
                             <div class="mb-3 ">
                                 <label class="form-label" for="formrow-firstname-input">{{ __("Tempat Akad") }}</label>
                                 <input type="text" wire:model.defer='akad_place' class="form-control"
-                                    id="formrow-firstname-input">
+                                    placeholder="Contoh : Kediaman Mempelai Wanita " id="formrow-firstname-input">
                             </div>
                             <div class="mb-3 ">
                                 <label class="form-label" for="formrow-firstname-input">{{ __("Alamat Akad") }}</label>
@@ -63,7 +63,7 @@
                                 <label class="form-label" for="formrow-firstname-input">{{ __("Tempat Resepsi")
                                     }}</label>
                                 <input type="text" wire:model.defer='resepsi_place' class="form-control"
-                                    id="formrow-firstname-input">
+                                    placeholder="Contoh : Kediaman Mempelai Wanita " id="formrow-firstname-input">
                             </div>
                             <div class="mb-3 ">
                                 <label class="form-label" for="formrow-firstname-input">{{ __("Alamat Resepsi")

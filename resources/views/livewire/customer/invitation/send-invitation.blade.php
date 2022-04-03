@@ -39,6 +39,7 @@
                                     <th>#</th>
                                     <th>Nama</th>
                                     <th>Nomor WA</th>
+                                    <th>Alamat Undangan</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -47,8 +48,15 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->image }}</td>
-                                    <td>{{ $item->type }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>
+                                        <div>
+                                            <input type="text" class="form-control" id="copy_{{ $item->id }}"
+                                                value="{{ $item->url }}?nama={{ $item->name }}">
+                                            <button value="copy"
+                                                onclick="copyToClipboard('copy_{{ $item->id }}')">Copy!</button>
+                                        </div>
+                                    </td>
                                     <td>
                                         @php
                                         $id = $item->id;
@@ -158,6 +166,12 @@
 </div>
 
 @push('js')
+<script>
+    function copyToClipboard(id) {
+        document.getElementById(id).select();
+        document.execCommand('copy');
+    }
+</script>
 <script type="text/javascript">
     window.livewire.on('form', () => {
                 $('#data').modal('show');
@@ -172,6 +186,33 @@
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
         @this.on('triggerDelete', contactId => {
+            Swal.fire({
+                title: 'Are You Sure?',
+                text: 'Invitation record will be deleted!',
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#aaa',
+                confirmButtonText: 'Delete!'
+            }).then((result) => {
+         //if user clicks on delete
+                if (result.value) {
+             // calling destroy method to delete
+                    @this.call('destroy',contactId)
+             // success response
+                    Swal.fire({title: message, icon: type});
+                } else {
+                    Swal.fire({
+                        title: 'Operation Cancelled!',
+                        icon: 'success'
+                    });
+                }
+            });
+        });
+    })
+
+     document.addEventListener('DOMContentLoaded', function () {
+        @this.on('update', contactId => {
             Swal.fire({
                 title: 'Are You Sure?',
                 text: 'Invitation record will be deleted!',

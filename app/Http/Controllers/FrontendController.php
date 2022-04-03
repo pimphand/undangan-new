@@ -9,6 +9,7 @@ use App\Models\Feature;
 use App\Models\Invitation\Invite;
 use App\Models\Theme;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FrontendController extends Controller
 {
@@ -45,15 +46,30 @@ class FrontendController extends Controller
 
     public function sendComment(Request $request, $data)
     {
-        $data = Invite::where('subdomain', $data)->first();
-        $data->comments()->create([
-            'nama' => "request->nama",
-            'komentar' => $request->komentar,
+
+        $s = Validator::make($request->all(), [
+            'komentar' => 'required',
         ]);
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Komentar berhasil dikirim',
-        ]);
+
+        if ($s->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $data->getMessageBag(),
+                'messages' => "Pesan tidak boleh kosong",
+            ]);
+        } else {
+            $data = Invite::where('subdomain', $data)->first();
+            $data->comments()->create([
+                'nama' => $request->nama,
+                'komentar' => $request->komentar,
+            ]);
+            return response()->json(
+                [
+                    'status' => 200,
+                    'messages' => "Pesan berhasil dikirim",
+                ],
+            );
+        }
     }
 
     public function dataComment($data)
