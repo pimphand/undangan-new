@@ -22,13 +22,14 @@
                     <button wire:click="form" type="button" class="btn btn-info btn-sm" data-bs-toggle="modal">
                         <i class="fa fa-plus"></i>
                     </button>
-                    <button wire:click="$emit('import')" type="button" class="btn btn-success btn-sm"
+                    {{-- <button wire:click="$emit('import')" type="button" class="btn btn-success btn-sm"
                         data-bs-toggle="modal">
                         <i class="fa fa-file-excel"></i> Import Excel
-                    </button>
-                    <button wire:click="export" type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal">
+                    </button> --}}
+                    {{-- <button wire:click="export" type="button" class="btn btn-warning btn-sm"
+                        data-bs-toggle="modal">
                         <i class="fa fa-file-excel"></i>
-                    </button>
+                    </button> --}}
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -52,7 +53,7 @@
                                     <td>
                                         <div>
                                             <input type="text" class="form-control" id="copy_{{ $item->id }}"
-                                                value="{{ $item->url }}?nama={{ $item->name }}">
+                                                value="{{ $item->url }}?nama={{ str_replace(" ", " -",$item->name) }}">
                                             <button value="copy"
                                                 onclick="copyToClipboard('copy_{{ $item->id }}')">Copy!</button>
                                         </div>

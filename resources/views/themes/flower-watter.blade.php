@@ -10,13 +10,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta property="og:title" content="{{ $data->bride->username_man }} & {{ $data->bride->username_woman }}">
     <meta property="og:description" content="Hello Tamu Undangan! Kamu Di Undang..">
-    <meta property="og:url" content="https://weddingcnk.com">
+    <meta property="og:url" content="undanganmo.com">
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="300">
     <meta property="og:type" content="website" />
     <title>{{ $data->bride->username_man }} & {{ $data->bride->username_woman }}</title>
-    <link rel="icon" href="https://weddingcnk.com/assets/users/mIjh78y8ge13b89d99c1a29132e57d2ca/kita.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="icon" href="{{ $data->bride->photo_man }}"">
+    <link rel=" stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/1.17.3/simplelightbox.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link href="{{ asset('themes/google_fonts/Merriweather.css') }}" rel="stylesheet">
@@ -54,7 +55,7 @@
             </div>
             <div class="col-md-12 to" data-aos="fade-down" data-aos-duration="3000">
                 <i>Kepada Yth<br>Bapak/Ibu/Saudara/i</i>
-                <h4 class="text-secondary mt-1">{{ request()->nama }}</h4>
+                <h4 class="text-secondary mt-1">{{ str_replace("-"," ",request()->nama) }}</h4>
                 Di Tempat
             </div>
         </div>
@@ -267,8 +268,11 @@
                 <form id="guestbook" action="javascript:void();" novalidate="true">
                     <div class="form-group">
                         <label for="guestName">Nama</label>
-                        <input type="text" name="nama" id="nama" readonly value="{{ request()->nama }}"
-                            class="form-control" placeholder="Your Name" autocomplete="off">
+                        @php
+                        $val = str_replace("-"," ",request()->nama);
+                        @endphp
+                        <input type="text" name="nama" id="nama" readonly value="{{ $val }}" class="form-control"
+                            placeholder="Your Name" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="message">Pesan/Doa</label>
@@ -566,18 +570,3 @@
 </body>
 
 </html>
-{{--
-$('.comment').find('#stk').html("");
-$.each(data.data, function (key, item) {
-$('.comment').find('#stk').append('<div class="col-md-12 mb-3 komen">\
-    \
-    \
-    \
-    <div class="mb-2">\
-        <h5 class="h6 mb-0">'+item.nama+'</h5>\
-    </div>\
-    <p>'+item.komentar'</p>\
-</div>\
-</div>\
-</div>');
-}); --}}
