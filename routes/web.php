@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\DataUser;
+use App\Http\Livewire\Admin\Faq;
 use App\Http\Livewire\Admin\Feature\DataFeature;
 use App\Http\Livewire\Admin\Theme\DataTheme;
 use App\Http\Livewire\Auth\Register;
@@ -59,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/theme', DataTheme::class)->name('theme');
         Route::get('/user', DataUser::class)->name('user');
         Route::get('/feature', DataFeature::class)->name('feature');
+        Route::get('/faq', Faq::class)->name('faq');
     });
 
     Route::middleware(['role:1|2'])->group(function () {

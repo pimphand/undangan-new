@@ -39,6 +39,13 @@
                     </a>
 
                 </li>
+                <li>
+                    <a href="{{ route('faq') }}">
+                        <i data-feather="help-circle"></i>
+                        <span data-key="t-authentication">Faq</span>
+                    </a>
+
+                </li>
                 @endif
 
                 @if (auth()->user()->role == 1)
