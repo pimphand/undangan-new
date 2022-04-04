@@ -14,7 +14,7 @@
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="300">
     <meta property="og:type" content="website" />
-    <title>Andra & Amel </title>
+    <title>{{ $data->bride->username_man }} & {{ $data->bride->username_woman }}</title>
     <link rel="icon" href="https://weddingcnk.com/assets/users/mIjh78y8ge13b89d99c1a29132e57d2ca/kita.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/1.17.3/simplelightbox.min.css">
@@ -267,8 +267,8 @@
                 <form id="guestbook" action="javascript:void();" novalidate="true">
                     <div class="form-group">
                         <label for="guestName">Nama</label>
-                        <input type="text" name="nama" id="nama" class="form-control" placeholder="Your Name"
-                            autocomplete="off">
+                        <input type="text" name="nama" id="nama" readonly value="{{ request()->nama }}"
+                            class="form-control" placeholder="Your Name" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="message">Pesan/Doa</label>
