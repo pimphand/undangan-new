@@ -37,6 +37,10 @@ Route::get('/wedding/{slug}', [FrontendController::class, 'undangan'])->name('un
 Route::get('/data-comment/{slug}', [FrontendController::class, 'dataComment']);
 Route::post('/wedding/{slug}', [FrontendController::class, 'sendcomment'])->name('sendcomment');
 Route::get('/tema', [FrontendController::class, 'tema'])->name('tema-data');
+// data
+Route::get('/data-faq', [FrontendController::class, 'dataFaq'])->name('faq-data');
+Route::get('/data-why', [FrontendController::class, 'why'])->name('why-data');
+Route::get('/list-theme', [FrontendController::class, 'dataFaq'])->name('list-theme');
 Route::get('/data-feature', [FrontendController::class, 'feature'])->name('feature-data');
 Route::get('/demo/{slug}', [FrontendController::class, 'demo'])->name('demo');
 Route::get('/register-customer', Register::class)
