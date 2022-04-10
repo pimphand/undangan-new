@@ -302,8 +302,7 @@
     </footer>
     <div style="height:50px;width:60px;position: absolute;bottom:0;z-index:-1;visibility: hidden;">
         <audio id="player" loop>
-            <source src=""
-                type="audio/mp3">
+            <source src="{{ asset('storage/'. $data->music) }}" type="audio/mp3">
         </audio>
     </div>
     <div class="play-pause btn-play-pause" id="button-control"><img

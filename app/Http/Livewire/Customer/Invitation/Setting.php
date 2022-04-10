@@ -22,6 +22,7 @@ class Setting extends Component
     {
         return view('livewire.customer.invitation.setting', [
             "item" => Auth::user()->setting->first(),
+            "playMusic" => Auth::user()->personal->first()->music
         ]);
     }
 

@@ -24,7 +24,9 @@
                             </div>
 
                             <div class="col-2">
-                                <button class="btn btn-success">Simpan</button>
+                                <button type="submit" class="btn btn-success btn-sm">Simpan</button>
+                                <button type="button" class="btn btn-primary btn-sm"
+                                    wire:click="$emit('play')">PlayMusic</button>
                             </div>
                         </div>
                     </form>
@@ -133,4 +135,34 @@
             <!-- end card -->
         </div>
     </div>
+
+    <div wire:ignore.self class="modal fade" id="data" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Musik</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <audio controls>
+                        <source width="100%" src="horse.ogg" type="audio/ogg">
+                        <source width="100%" src="{{ asset('storage/'. $playMusic) ?? ""}}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+
+
+@push('js')
+<script type="text/javascript">
+    window.livewire.on('play', () => {
+                $('#data').modal('show');
+            });
+</script>
+
+@endpush
