@@ -6,7 +6,7 @@
                     <h4 class="card-title">Setting</h4>
                 </div>
                 <div class="card-body">
-                    <form wire:submit.prevent="change">
+                    <form wire:submit.prevent="change" enctype="multipart/form-data">
                         <div class=" row">
                             <div class="col-4">
                                 <div class="input-group">
@@ -14,10 +14,18 @@
                                     <input type="text" class="form-control" wire:model='url'>
                                 </div>
                             </div>
+
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="input-group-text mr-1">Musik</div>
+                                    <input type="file" class="form-control" wire:model='music'>
+                                </div>
+                                <span class="text-sm text-danger">Musik Maximal 2mb</span>
+                            </div>
+
                             <div class="col-2">
                                 <button class="btn btn-success">Simpan</button>
                             </div>
-                            <div class="col-6"></div>
                         </div>
                     </form>
                     <div class="table-responsive mt-4">

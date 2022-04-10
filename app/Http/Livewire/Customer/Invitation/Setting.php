@@ -3,12 +3,15 @@
 namespace App\Http\Livewire\Customer\Invitation;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Setting extends Component
 {
-    public $url;
+    use WithFileUploads;
+    public $url, $music;
 
     public function mount()
     {
@@ -39,21 +42,28 @@ class Setting extends Component
     {
         try {
             $this->validate([
-                'url' => 'required|unique:invites,subdomain,' . Auth::user()->personal->user_id,
+                'url' => 'required|unique:invites,subdomain,' . Auth::user()->personal->id,
+                'music' => 'nullable|mimes:mp3,wav|max:2048',
             ]);
+
+            // if ($this->music != null) {
+            // } else {
+
+            // }
             Auth::user()->personal->update([
                 "subdomain" => Str::slug($this->url),
+                "music" => $this->music != null ?  $this->music->store('music/', 'public') : $music = Auth::user()->personal->first()->music
+
             ]);
 
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'success',
                 'message' => "Data berhasil disimpan",
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'error',
-                'message' => "Url sudah digunakan",
-
+                'message' => $e->getMessage(),
             ]);
         }
     }
