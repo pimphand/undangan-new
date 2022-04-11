@@ -170,7 +170,7 @@
         </div>
     </div>
     <!-- End Features Area -->
-
+{{--  --}}
     <!-- Start About 
     ============================================= -->
     <div id="about" class="about-area reverse default-padding-bottom">
