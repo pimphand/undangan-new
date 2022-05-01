@@ -11,11 +11,7 @@ class Theme extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    protected $appends = ['image', 'url'];
-    public function getImageAttribute()
-    {
-        return Storage::url($this->attributes['image']);
-    }
+    protected $appends = ['url'];
 
     public function getUrlAttribute($value)
     {
